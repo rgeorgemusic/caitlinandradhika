@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Honeymoon Fund</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Meow+Script&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:white;
+    font-family:'Inter', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    text-align:center;
+    animation:fadeIn 1.5s ease;
+}
+
+h1{
+    font-family:'Meow Script', cursive;
+    font-size:72px;
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.message{
+    font-family:'Cormorant Garamond', serif;
+    font-size:28px;
+    line-height:1.6;
+    color:#f3f3f3;
+    margin-bottom:50px;
+}
+
+.qr-card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:35px;
+    display:inline-block;
+    transition:.4s;
+}
+
+.qr-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(255,255,255,.15);
+}
+
+.qr-card img{
+    width:260px;
+    border-radius:18px;
+}
+
+.venmo{
+    margin-top:20px;
+    font-size:24px;
+    font-family:'Cormorant Garamond', serif;
+}
+
+.username{
+    margin-top:8px;
+    font-size:22px;
+    color:#d6d6d6;
+}
+
+.back{
+    display:inline-block;
+    margin-top:50px;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    letter-spacing:2px;
+    transition:.3s;
+}
+
+.back:hover{
+    color:#cccccc;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Honeymoon Fund</h1>
+
+    <div class="message">
+        The greatest gift is having you celebrate with us.
+        <br><br>
+        If you'd like to contribute toward our honeymoon adventures,
+        we'd be incredibly grateful. Thank you for helping us create
+        memories that will last a lifetime.
+    </div>
+
+    <div class="qr-card">
+        <img src="venmo-qr.png" alt="Venmo QR Code">
+
+        <div class="venmo">
+            Scan to Venmo
+        </div>
+
+        <div class="username">
+            @YourVenmoUsername
+        </div>
+    </div>
+
+    <br>
+
+    <a class="back" href="main.html">
+        ← Back
+    </a>
+
+</div>
+
+</body>
+</html>

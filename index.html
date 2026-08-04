@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        /* Reset default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen black background */
+        body {
+            background-color: #000;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Center image */
+        .center-image {
+            width: 600px; /* Change this number to make it bigger or smaller */
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+
+        /* Slight zoom on hover */
+        .center-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Slight shrink when clicked */
+        .center-image:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Clicking the image opens page2.html -->
+    <a href="main.html">
+        <img src="image/wire.png" alt="Enter Site" class="center-image">
+    </a>
+
+</body>
+</html>

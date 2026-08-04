@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RSVP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Meow+Script&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:white;
+    font-family:'Inter',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* Main Card */
+
+.container{
+    width:90%;
+    max-width:600px;
+    padding:55px;
+    border-radius:22px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    text-align:center;
+}
+
+h1{
+    font-family:'Meow Script',cursive;
+    font-size:74px;
+    font-weight:400;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;
+    color:#dddddd;
+    margin-bottom:40px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+input{
+    width:100%;
+    padding:18px;
+    background:#111;
+    border:1px solid #444;
+    border-radius:12px;
+    color:white;
+    font-size:17px;
+    transition:.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:white;
+}
+
+button{
+    margin-top:10px;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:black;
+    cursor:pointer;
+    font-size:20px;
+    font-family:'Cormorant Garamond',serif;
+    transition:.35s;
+}
+
+button:hover{
+    background:#f7d9ff;
+    transform:scale(1.04);
+}
+
+/* Thank You Overlay */
+
+#thankYou{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+}
+
+#thankYou img{
+    width:420px;
+    max-width:85%;
+    border-radius:18px;
+    box-shadow:0 0 40px rgba(255,255,255,.2);
+}
+
+#thankYou h2{
+    font-family:'Meow Script',cursive;
+    font-size:64px;
+    margin-top:25px;
+}
+
+#thankYou p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    color:#ddd;
+    margin-top:8px;
+}
+
+.fadeIn{
+    animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>RSVP</h1>
+
+<p class="subtitle">
+We can't wait to celebrate with you.
+</p>
+
+<form id="rsvpForm"
+action="https://formsubmit.co/caitlinandradhika@gmail.com"
+method="POST">
+
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New Wedding RSVP">
+
+<!-- Change this to your website -->
+<input type="hidden"
+name="_next"
+value="https://yourwebsite.com/thankyou.html">
+
+<input
+type="text"
+name="Guest Name"
+placeholder="Your Name"
+required>
+
+<input
+type="text"
+name="Plus One"
+placeholder="+1">
+
+<button type="submit">
+Submit RSVP
+</button>
+
+</form>
+
+</div>
+
+<!-- Thank You Screen -->
+
+<div id="thankYou">
+
+<!-- Replace with your own photo -->
+<img src="thankyou-photo.jpg" alt="Thank You" class="fadeIn">
+
+<h2 class="fadeIn">
+Thank You!
+</h2>
+
+<p class="fadeIn">
+Your RSVP is on its way ❤️
+</p>
+
+</div>
+
+<script>
+
+const form = document.getElementById("rsvpForm");
+const overlay = document.getElementById("thankYou");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    overlay.style.display = "flex";
+
+    setTimeout(function(){
+
+        form.submit();
+
+    },2500);
+
+});
+
+</script>
+
+</body>
+</html>

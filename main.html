@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>We Eloped</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Meow+Script&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.video-container{
+    width:min(95vw,1200px);
+}
+
+.hero video{
+    width:100%;
+    height:auto;
+    max-height:92vh;
+    display:block;
+    border-radius:12px;
+}
+
+/* ---------------- SCROLL INDICATOR ---------------- */
+
+.scroll-indicator{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    animation:bounce 2s infinite;
+    cursor:pointer;
+}
+
+.scroll-indicator p{
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.arrow{
+    font-size:34px;
+    margin-top:8px;
+}
+
+@keyframes bounce{
+
+    0%,20%,50%,80%,100%{
+        transform:translateX(-50%) translateY(0);
+    }
+
+    40%{
+        transform:translateX(-50%) translateY(-12px);
+    }
+
+    60%{
+        transform:translateX(-50%) translateY(-6px);
+    }
+
+}
+
+body.scrolled .scroll-indicator{
+    opacity:0;
+    pointer-events:none;
+    transition:.5s;
+}
+
+/* ---------------- SECOND SECTION ---------------- */
+
+.content{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:90px 8%;
+}
+
+.content-wrapper{
+    max-width:1300px;
+    width:100%;
+    display:flex;
+    gap:90px;
+    align-items:flex-start;
+    position:relative;
+}
+
+/* ========================= */
+/* ONLY CHANGE: STICKY VIDEO */
+/* ========================= */
+
+.portrait-video{
+    width:320px;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 0 35px rgba(255,255,255,.15);
+    flex-shrink:0;
+
+    position:sticky;
+    top:40px;
+    align-self:flex-start;
+}
+
+.portrait-video video{
+    width:100%;
+    display:block;
+}
+
+.party-details{
+    flex:1;
+}
+
+.party-details h1{
+    font-family:'Meow Script',cursive;
+    font-size:5.5rem;
+    font-weight:normal;
+    margin-bottom:50px;
+}
+
+/* -------- NEW EVENT LAYOUT -------- */
+
+.event{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:45px;
+    margin-bottom:70px;
+    align-items:flex-start;
+    padding-bottom:35px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.event:last-child{
+    border-bottom:none;
+}
+
+.event h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.7rem;
+    font-weight:600;
+    margin-bottom:18px;
+    color:white;
+    letter-spacing:.5px;
+}
+
+.event-details{
+    font-family:'Inter',sans-serif;
+    color:#d6d6d6;
+    font-size:1rem;
+    line-height:2;
+}
+
+.event-details strong{
+    color:white;
+    font-weight:500;
+}
+
+.event-description{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.35rem;
+    line-height:1.9;
+    color:#efefef;
+}
+
+.event-description p{
+    margin-bottom:18px;
+}
+
+.event-description em{
+    color:white;
+    font-style:italic;
+}
+
+/* ---------------- THIRD SECTION ---------------- */
+
+.final-section{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:100px 8%;
+}
+
+.final-wrapper{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.final-video{
+    width:min(900px,100%);
+    margin-bottom:50px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 0 35px rgba(255,255,255,.15);
+}
+
+.final-video video{
+    width:100%;
+    display:block;
+}
+
+.button-group{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.button-group a{
+    text-decoration:none;
+    color:white;
+    border:2px solid white;
+    padding:18px 50px;
+    border-radius:60px;
+    font-size:1.05rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:.35s;
+}
+
+.button-group a:hover{
+    background:white;
+    color:black;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:900px){
+
+.content-wrapper{
+    flex-direction:column;
+    align-items:center;
+}
+
+.portrait-video{
+    position:relative;
+    top:0;
+}
+
+.party-details{
+    width:100%;
+}
+
+.party-details h1{
+    text-align:center;
+    font-size:4.3rem;
+}
+
+.event{
+    grid-template-columns:1fr;
+    gap:25px;
+}
+
+.event h2{
+    font-size:2.2rem;
+}
+
+.event-description{
+    font-size:1.2rem;
+}
+
+.button-group{
+    flex-direction:column;
+    width:100%;
+}
+
+.button-group a{
+    width:100%;
+    max-width:320px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="video-container">
+
+        <video id="weddingVideo" autoplay loop playsinline>
+            <source src="video/video2.mp4" type="video/mp4">
+        </video>
+
+    </div>
+
+    <div class="scroll-indicator" onclick="scrollToContent()">
+        <p>Scroll Down</p>
+        <div class="arrow">⌄</div>
+    </div>
+
+</section>
+
+<!-- ================= THE PLAN ================= -->
+
+<section class="content" id="content">
+
+<div class="content-wrapper">
+
+    <div class="portrait-video">
+
+        <video autoplay loop muted playsinline>
+            <source src="video/Cait.mp4" type="video/mp4">
+        </video>
+
+    </div>
+
+    <div class="party-details">
+
+        <h1>The Plan</h1>
+        <!-- ALL NIGHT SKATE -->
+
+        <div class="event">
+
+            <div>
+
+                <h2>All Night Skate</h2>
+
+                <div class="event-details">
+
+                    <strong>Date:</strong> May 29, 2027<br>
+                    <strong>Time:</strong> 6:30 PM – Late Night<br>
+                    <strong>Location:</strong><br>
+                    54 Rockaway Ave<br>
+                    Brooklyn, NY 11233
+
+                </div>
+
+            </div>
+
+            <div class="event-description">
+
+                <p>
+                    We wanted the weekend to start with something that
+                    feels completely like us—music, skating, and spending
+                    the night surrounded by our favorite people.
+                </p>
+
+                <p>
+                    Whether you're skating every lap or hanging out on
+                    the sidelines, this is all about catching up,
+                    laughing together, and celebrating without a formal
+                    schedule.
+                </p>
+
+                <p>
+                    Dress comfortably, bring your skates if you have
+                    them, and don't worry if you don't—everyone is
+                    welcome regardless of experience.
+                </p>
+
+                <p>
+                    <em>
+                        Think late-night playlists, snacks, and good
+                        memories.
+                    </em>
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RIIS BEACH -->
+
+        <div class="event">
+
+            <div>
+
+                <h2>Riis Beach</h2>
+
+                <div class="event-details">
+
+                    <strong>Date:</strong> May 30, 2027<br>
+                    <strong>Time:</strong> 2:30 PM – Sunset<br>
+                    <strong>Location:</strong><br>
+                    157 Rockaway Beach Blvd<br>
+                    Queens, NY 11694
+
+                </div>
+
+            </div>
+
+            <div class="event-description">
+
+                <p>
+                    The next day we'll slow things down with a relaxing
+                    afternoon at Riis Beach. Come swim, lay in the sun,
+                    play games, or simply enjoy the ocean with us.
+                </p>
+
+                <p>
+                    Bring a towel, sunscreen, water, and anything that
+                    makes your perfect beach day. We'll have music,
+                    snacks, and plenty of time to hang out together.
+                </p>
+
+                <p>
+                    We'll stay through golden hour and sunset, making
+                    this the perfect ending to our wedding weekend.
+                </p>
+
+                <p>
+                    <em>
+                        Beach clothes, barefoot vibes, and one final
+                        celebration together.
+                    </em>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ================= FINAL SECTION ================= -->
+
+<section class="final-section">
+
+    <div class="final-wrapper">
+
+        <div class="final-video">
+
+            <video autoplay loop muted playsinline>
+                <source src="video/Fran.MP4" type="video/mp4">
+            </video>
+
+        </div>
+
+        <div class="button-group">
+
+            <a href="rsvp.html">RSVP</a>
+
+            <a href="funds.html">Honeymoon Fund</a>
+
+        </div>
+
+    </div>
+
+</section>
+<script>
+
+window.addEventListener("load", async () => {
+
+    const video = document.getElementById("weddingVideo");
+
+    try{
+
+        video.muted = false;
+        video.volume = 1.0;
+
+        await video.play();
+
+    }catch(e){
+
+        console.log("Autoplay with sound blocked.");
+
+    }
+
+});
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 50){
+
+        document.body.classList.add("scrolled");
+
+    }else{
+
+        document.body.classList.remove("scrolled");
+
+    }
+
+});
+
+function scrollToContent(){
+
+    document.getElementById("content").scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
