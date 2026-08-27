@@ -1,0 +1,261 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Memories</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Meow+Script&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+}
+
+/* Main container */
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 30px;
+}
+
+/* Heading */
+
+.title {
+    font-family: 'Meow Script', cursive;
+    font-size: clamp(60px, 9vw, 110px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 65px;
+    text-align: center;
+}
+
+/* Icons */
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 650px;
+}
+
+/* Individual icon */
+
+.icon-link {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    transition: transform 0.35s ease;
+}
+
+.icon-link:hover {
+    transform: translateY(-8px);
+}
+
+/* Image icon */
+
+.icon-image {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.45);
+    padding: 8px;
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.icon-link:hover .icon-image {
+    border-color: white;
+    box-shadow: 0 0 35px rgba(255,255,255,0.15);
+}
+
+/* Text underneath icons */
+
+.icon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    font-weight: 500;
+    margin-top: 22px;
+    letter-spacing: 1px;
+}
+
+.icon-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-top: 7px;
+    line-height: 1.6;
+}
+
+/* Back link */
+
+.back {
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.back:hover {
+    opacity: 1;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    .page {
+        padding: 80px 25px 50px;
+    }
+
+    .subtitle {
+        margin-bottom: 50px;
+    }
+
+    .icon-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 55px;
+    }
+
+    .icon-link {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .icon-image {
+        width: 155px;
+        height: 155px;
+    }
+
+    .icon-title {
+        font-size: 25px;
+    }
+
+    .back {
+        top: 25px;
+        left: 25px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html" class="back">← Back</a>
+
+<div class="page">
+
+    <h1 class="title">Memories</h1>
+
+    <div class="subtitle">
+        A little something for everyone
+    </div>
+
+    <div class="icon-container">
+
+        <!-- GOOGLE DRIVE PHOTO UPLOAD -->
+
+        <a
+            href="https://drive.google.com/drive/folders/1z7_6pic-RoFKHb_oQdmwpwazd0aKXcIa?usp=drive_link"
+            target="_blank"
+            class="icon-link"
+        >
+
+            <img
+                src="image/img3.JPG"
+                alt="Share Photos"
+                class="icon-image"
+            >
+
+            <div class="icon-title">
+                Share Photos
+            </div>
+
+            <div class="icon-description">
+                Add your photos
+            </div>
+
+        </a>
+
+
+        <!-- SECOND HTML PAGE -->
+
+        <a
+            href="anotherpage.html"
+            class="icon-link"
+        >
+
+            <img
+                src="images/another-icon.jpg"
+                alt="Another Page"
+                class="icon-image"
+            >
+
+            <div class="icon-title">
+                See Photos
+            </div>
+
+            <div class="icon-description">
+                Photos from the proposal, the elopement and eventually the wedding!
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
+
+The key change is that the icons now sit in a **650px-wide centered row with equal space between them**, which makes the pair feel more intentionally aligned underneath the **Memories** title rather than floating too far apart.
