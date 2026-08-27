@@ -100,44 +100,60 @@ body.scrolled .scroll-indicator{
 
 .content{
     min-height:100vh;
+    position:relative;
+    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:flex-start;
     padding:90px 8%;
 }
 
+/* ---------------- CAIT BACKGROUND VIDEO ---------------- */
+
+.background-video{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    overflow:hidden;
+}
+
+.background-video video{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%,-50%);
+}
+
+/* DARK OVERLAY */
+
+.background-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.58);
+    z-index:1;
+}
+
+/* ---------------- CONTENT ABOVE VIDEO ---------------- */
+
 .content-wrapper{
     max-width:1300px;
     width:100%;
-    display:flex;
-    gap:90px;
-    align-items:flex-start;
-    position:relative;
-}
-
-/* ========================= */
-/* ONLY CHANGE: STICKY VIDEO */
-/* ========================= */
-
-.portrait-video{
-    width:320px;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 0 35px rgba(255,255,255,.15);
-    flex-shrink:0;
-
-    position:sticky;
-    top:40px;
-    align-self:flex-start;
-}
-
-.portrait-video video{
-    width:100%;
     display:block;
+    position:relative;
+    z-index:2;
 }
 
 .party-details{
-    flex:1;
+    width:100%;
 }
 
 .party-details h1{
@@ -147,7 +163,7 @@ body.scrolled .scroll-indicator{
     margin-bottom:50px;
 }
 
-/* -------- NEW EVENT LAYOUT -------- */
+/* -------- EVENT LAYOUT -------- */
 
 .event{
     display:grid;
@@ -156,7 +172,7 @@ body.scrolled .scroll-indicator{
     margin-bottom:70px;
     align-items:flex-start;
     padding-bottom:35px;
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,.25);
 }
 
 .event:last-child{
@@ -259,14 +275,8 @@ body.scrolled .scroll-indicator{
 
 @media(max-width:900px){
 
-.content-wrapper{
-    flex-direction:column;
-    align-items:center;
-}
-
-.portrait-video{
-    position:relative;
-    top:0;
+.content{
+    padding:80px 6%;
 }
 
 .party-details{
@@ -332,116 +342,129 @@ body.scrolled .scroll-indicator{
 
 <section class="content" id="content">
 
-<div class="content-wrapper">
+    <!-- CAIT VIDEO BACKGROUND -->
 
-    <div class="portrait-video">
+    <div class="background-video">
 
-        <video autoplay loop muted playsinline>
+        <video id="caitVideo" loop muted playsinline preload="metadata">
             <source src="video/Cait.mp4" type="video/mp4">
         </video>
 
     </div>
 
-    <div class="party-details">
+    <!-- DARK OVERLAY -->
 
-        <h1>The Plan</h1>
-        <!-- ALL NIGHT SKATE -->
+    <div class="background-overlay"></div>
 
-        <div class="event">
+    <!-- CONTENT -->
 
-            <div>
+    <div class="content-wrapper">
 
-                <h2>All Night Skate</h2>
+        <div class="party-details">
 
-                <div class="event-details">
+            <h1>The Plan</h1>
 
-                    <strong>Date:</strong> May 29, 2027<br>
-                    <strong>Time:</strong> 6:30 PM – Late Night<br>
-                    <strong>Location:</strong><br>
-                    54 Rockaway Ave<br>
-                    Brooklyn, NY 11233
+            <!-- ALL NIGHT SKATE -->
+
+            <div class="event">
+
+                <div>
+
+                    <h2>All Night Skate</h2>
+
+                    <div class="event-details">
+
+                        <strong>Date:</strong> May 29, 2027<br>
+                        <strong>Time:</strong> 6:30 PM – Late Night<br>
+                        <strong>Location:</strong><br>
+                        54 Rockaway Ave<br>
+                        Brooklyn, NY 11233
+
+                    </div>
+
+                </div>
+
+                <div class="event-description">
+
+                    <p>
+                        We eloped!!!! And now we want to celebrate with all of our loved ones, 
+                        starting by having you join us for tacos, chaat, drinks and dancing 
+                        at our favorite Brooklyn bar, All Night Skate.
+                    </p>
+
+                    <p>
+                        The night will begin at 6pm and go until late. Come ready to celebrate 
+                        our love and yourselves for pouring into us along the way, from near and far.
+                    </p>
+
+                    <p>
+                        
+                    </p>
+
+                    <p>
+                        <em>
+                            
+                        </em>
+                    </p>
 
                 </div>
 
             </div>
+                <!-- RIIS BEACH -->
 
-            <div class="event-description">
+            <div class="event">
 
-                <p>
-                    We eloped!!!! And now we want to celebrate with all of our loved ones, 
-                    starting by having you join us for tacos, chaat, drinks and dancing 
-                    at our favorite Brooklyn bar, All Night Skate.
-                </p>
+                <div>
 
-                <p>
-                    The night will begin at 6pm and go until late. Come ready to celebrate 
-                    our love and yourselves for pouring into us along the way, from near and far.
-                    Dress comfortably to party!
-                </p>
-                
-                <p>
-                    
-                </p>
+                    <h2>Riis Beach</h2>
 
-            </div>
+                    <div class="event-details">
 
-        </div>
+                        <strong>Date:</strong> May 30, 2027<br>
+                        <strong>Time:</strong> 2:30 PM – Sunset<br>
+                        <strong>Location:</strong><br>
+                        157 Rockaway Beach Blvd<br>
+                        Queens, NY 11694
 
-        <!-- RIIS BEACH -->
-
-        <div class="event">
-
-            <div>
-
-                <h2>Riis Beach</h2>
-
-                <div class="event-details">
-
-                    <strong>Date:</strong> May 30, 2027<br>
-                    <strong>Time:</strong> 2:30 PM – Sunset<br>
-                    <strong>Location:</strong><br>
-                    157 Rockaway Beach Blvd<br>
-                    Queens, NY 11694
+                    </div>
 
                 </div>
 
-            </div>
+                <div class="event-description">
 
-            <div class="event-description">
+                    <p>
+                        The next day we would love to gather you all at another
+                        favorite spot of ours, Riis beach! Please come for an 
+                        afternoon of reminesing, rehydrating, and soaking up
+                        the joy of gayest beach of all time!
+                    </p>
 
-                <p>
-                    The next day we would love to gather you all at another
-                    favorite spot of ours, Riis beach! Please come for an 
-                    afternoon of reminesing, rehydrating, and soaking up
-                    the joy of gayest beach of all time!
-                </p>
+                    <p>
+                        Bring a towel, sunscreen, water and we'll have music,
+                        snacks, and drinks. We will have some shades set up with
+                        a sign so you can't miss us. For public transit, map to 
+                        The People's Beach at Jacob Riis Park. You can park in the lot
+                        for $25 and walk over. There are public restrooms and concessions 
+                        available. 
+                    </p>
 
-                <p>
-                    Bring a towel, sunscreen, water and we'll have music,
-                    snacks, and drinks. We will have some shades set up with
-                    a sign so you can't miss us. For public transit, map to 
-                    The People's Beach at Jacob Riis Park. You can park in the lot
-                    for $25 and walk over. There are public restrooms and concessions 
-                    available. 
-                </p>
+                    <p>
+                        We'll stay until the sun sets on what we hope to be a
+                        magical weekend with all of favorite people in some of
+                        our favorite places!
+                    </p>
 
-                <p>
-                    We'll stay until the sun sets on what we hope to be a
-                    magical weekend with all of favorite people in some of
-                    our favorite places!
-                </p>
+                    <p>
+                        
+                    </p>
 
-                <p>
-                   
-                </p>
+                </div>
 
             </div>
 
         </div>
 
     </div>
-
-</div>
 
 </section>
 
@@ -454,7 +477,7 @@ body.scrolled .scroll-indicator{
         <div class="final-video">
 
             <video autoplay loop muted playsinline>
-                <source src="video/fran.mp4" type="video/mp4">
+                <source src="video/Fran.MP4" type="video/mp4">
             </video>
 
         </div>
@@ -471,6 +494,8 @@ body.scrolled .scroll-indicator{
 
 </section>
 <script>
+
+/* ---------------- HERO VIDEO ---------------- */
 
 window.addEventListener("load", async () => {
 
@@ -491,6 +516,9 @@ window.addEventListener("load", async () => {
 
 });
 
+
+/* ---------------- SCROLL INDICATOR ---------------- */
+
 window.addEventListener("scroll", () => {
 
     if(window.scrollY > 50){
@@ -505,15 +533,84 @@ window.addEventListener("scroll", () => {
 
 });
 
+
+/* ---------------- SCROLL TO CONTENT ---------------- */
+
 function scrollToContent(){
 
     document.getElementById("content").scrollIntoView({
 
-        behavior: "smooth"
+        behavior:"smooth"
 
     });
 
 }
+
+
+/* ---------------- CAIT BACKGROUND VIDEO ---------------- */
+
+const contentSection = document.getElementById("content");
+const caitVideo = document.getElementById("caitVideo");
+
+
+/*
+    The Cait video only plays while the
+    The Plan section is visible on screen.
+*/
+
+const videoObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            caitVideo.play().catch(() => {
+
+                console.log("Cait video autoplay was blocked.");
+
+            });
+
+        }else{
+
+            caitVideo.pause();
+
+        }
+
+    });
+
+},{
+    threshold:0.15
+});
+
+
+videoObserver.observe(contentSection);
+
+
+/* ---------------- PAUSE CAIT VIDEO WHEN LEAVING PAGE ---------------- */
+
+document.addEventListener("visibilitychange", () => {
+
+    if(document.hidden){
+
+        caitVideo.pause();
+
+    }else{
+
+        const rect = contentSection.getBoundingClientRect();
+
+        const visible =
+            rect.top < window.innerHeight &&
+            rect.bottom > 0;
+
+        if(visible){
+
+            caitVideo.play().catch(() => {});
+
+        }
+
+    }
+
+});
 
 </script>
 
