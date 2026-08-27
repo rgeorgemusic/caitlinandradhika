@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,6 +161,7 @@ action="https://formsubmit.co/caitlinandradhika@gmail.com"
 method="POST">
 
 <input type="hidden" name="_captcha" value="false">
+
 <input type="hidden" name="_subject" value="New Wedding RSVP">
 
 <!-- Change this to your website -->
@@ -167,16 +169,13 @@ method="POST">
 name="_next"
 value="https://yourwebsite.com/thankyou.html">
 
+<!-- ONE GUEST ONLY -->
+
 <input
 type="text"
 name="Guest Name"
 placeholder="Your Name"
 required>
-
-<input
-type="text"
-name="Plus One"
-placeholder="+1">
 
 <button type="submit">
 Submit RSVP
@@ -190,12 +189,16 @@ Submit RSVP
 
 <div id="thankYou">
 
+<!-- Replace with your own photo -->
+
+<img src="thankyou-photo.jpg" alt="Thank You" class="fadeIn">
+
 <h2 class="fadeIn">
 Thank You!
 </h2>
 
 <p class="fadeIn">
-Your RSVP is on its way! This page may expire, but your response is recorded ❤️
+Your RSVP is on its way ❤️
 </p>
 
 </div>
@@ -223,3 +226,4 @@ form.addEventListener("submit", function(e){
 
 </body>
 </html>
+```
