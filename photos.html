@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +64,7 @@ body {
     transform: translateY(-8px);
 }
 
-/* Image icon */
+/* Share Photos icon */
 
 .icon-image {
     width: 210px;
@@ -71,11 +72,51 @@ body {
     object-fit: cover;
     border-radius: 50%;
     padding: 8px;
-    transition:
-        box-shadow 0.35s ease;
+    transition: box-shadow 0.35s ease;
 }
 
 .icon-link:hover .icon-image {
+    box-shadow: 0 0 35px rgba(255,255,255,0.15);
+}
+
+/* Portrait photo booth frame */
+
+.portrait-frame {
+    width: 170px;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background: #000;
+    transition: box-shadow 0.35s ease;
+}
+
+/* Moving photo */
+
+.portrait-image {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: photoScroll 8s ease-in-out infinite alternate;
+}
+
+/* Move photo from top to bottom */
+
+@keyframes photoScroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(calc(-100% + 280px));
+    }
+}
+
+/* Glow when hovering */
+
+.icon-link:hover .portrait-frame {
     box-shadow: 0 0 35px rgba(255,255,255,0.15);
 }
 
@@ -144,6 +185,21 @@ body {
         height: 170px;
     }
 
+    .portrait-frame {
+        width: 145px;
+        height: 240px;
+    }
+
+    @keyframes photoScroll {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(calc(-100% + 240px));
+        }
+    }
+
     .icon-title {
         font-size: 25px;
     }
@@ -198,11 +254,15 @@ body {
             class="icon-link"
         >
 
-            <img
-                src="image/motif.png"
-                alt="Another Page"
-                class="icon-image"
-            >
+            <div class="portrait-frame">
+
+                <img
+                    src="image/photobooth.jpg"
+                    alt="See Photos"
+                    class="portrait-image"
+                >
+
+            </div>
 
             <div class="icon-title">
                 See Photos
@@ -220,3 +280,4 @@ body {
 
 </body>
 </html>
+
