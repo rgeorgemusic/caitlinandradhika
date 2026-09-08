@@ -40,7 +40,7 @@ body {
 
 .icon-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     width: 100%;
     max-width: 650px;
@@ -61,21 +61,6 @@ body {
 
 .icon-link:hover {
     transform: translateY(-8px);
-}
-
-/* Share Photos icon */
-
-.icon-image {
-    width: 210px;
-    height: 210px;
-    object-fit: cover;
-    border-radius: 50%;
-    padding: 8px;
-    transition: box-shadow 0.35s ease;
-}
-
-.icon-link:hover .icon-image {
-    box-shadow: 0 0 35px rgba(255,255,255,0.15);
 }
 
 /* Portrait photo booth frame */
@@ -179,11 +164,6 @@ body {
         max-width: 250px;
     }
 
-    .icon-image {
-        width: 170px;
-        height: 170px;
-    }
-
     .portrait-frame {
         width: 145px;
         height: 240px;
@@ -207,6 +187,7 @@ body {
         top: 25px;
         left: 25px;
     }
+
 }
 
 </style>
@@ -221,32 +202,7 @@ body {
 
     <div class="icon-container">
 
-        <!-- GOOGLE DRIVE PHOTO UPLOAD -->
-
-        <a
-            href="https://drive.google.com/drive/folders/1z7_6pic-RoFKHb_oQdmwpwazd0aKXcIa?usp=sharing"
-            target="_blank"
-            class="icon-link"
-        >
-
-            <img
-                src="image/img3.JPG"
-                alt="Share Photos"
-                class="icon-image"
-            >
-
-            <div class="icon-title">
-                Share Photos
-            </div>
-
-            <div class="icon-description">
-                Sign in to your Gmail account, then add your photos to our shared album here.
-            </div>
-
-        </a>
-
-
-        <!-- SECOND HTML PAGE -->
+        <!-- SEE PHOTOS -->
 
         <a
             href="gallery.html"
