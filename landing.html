@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Meow+Script&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Main Container */
+
+.gallery-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+/* Gallery Icons */
+
+.gallery-icons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 45px;
+}
+
+/* Individual Icon */
+
+.gallery-item {
+    text-decoration: none;
+    color: #fff;
+    width: 30%;
+    max-width: 300px;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+}
+
+/* Image */
+
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+    filter: grayscale(10%);
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+/* Image Labels */
+
+.gallery-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .gallery-container {
+        padding: 40px 25px;
+    }
+
+    .gallery-icons {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .gallery-item {
+        width: 75%;
+        max-width: 280px;
+    }
+
+    .gallery-label {
+        font-size: 21px;
+        margin-top: 8px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="gallery-container">
+
+<div class="gallery-icons">
+
+    <!-- Proposal -->
+
+    <a href="gallery1.html" class="gallery-item">
+
+        <img 
+            src="image/proposal.JPG" 
+            alt="Proposal"
+            class="gallery-image"
+        >
+
+        <div class="gallery-label">
+            Proposal
+        </div>
+
+    </a>
+
+
+    <!-- Elopement -->
+
+    <a href="elopement.html" class="gallery-item">
+
+        <img 
+            src="elopement.jpg" 
+            alt="Elopement"
+            class="gallery-image"
+        >
+
+        <div class="gallery-label">
+            Elopement
+        </div>
+
+    </a>
+
+
+    <!-- Wedding -->
+
+    <a href="wedding.html" class="gallery-item">
+
+        <img 
+            src="wedding.jpg" 
+            alt="Wedding"
+            class="gallery-image"
+        >
+
+        <div class="gallery-label">
+            Wedding
+        </div>
+
+    </a>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

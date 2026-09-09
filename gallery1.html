@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gallery</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    background:#000;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    padding:25px;
+    margin:0;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   VIDEO
+   ========================================= */
+
+.gallery-video{
+    width:100%;
+    max-width:1600px;
+    margin:0 auto 30px auto;
+    display:block;
+}
+
+.gallery-video video{
+    width:100%;
+    max-height:80vh;
+    object-fit:contain;
+    display:block;
+}
+
+
+/* =========================================
+   GALLERY
+   ========================================= */
+
+.gallery{
+    width:100%;
+    max-width:1600px;
+    margin:0 auto;
+
+    display:grid;
+    grid-template-columns:repeat(12, 1fr);
+    grid-auto-rows:100px;
+    gap:12px;
+}
+
+
+/* =========================================
+   IMAGES
+   ========================================= */
+
+.photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    cursor:pointer;
+}
+
+
+/* =========================================
+   RANDOM-LOOKING IMAGE SIZES
+   ========================================= */
+
+.photo.vertical-small{
+    grid-column:span 3;
+    grid-row:span 4;
+}
+
+.photo.vertical-large{
+    grid-column:span 4;
+    grid-row:span 6;
+}
+
+.photo.horizontal-small{
+    grid-column:span 5;
+    grid-row:span 3;
+}
+
+.photo.horizontal-large{
+    grid-column:span 6;
+    grid-row:span 4;
+}
+
+.photo.square{
+    grid-column:span 4;
+    grid-row:span 4;
+}
+
+
+/* =========================================
+   FULL-SCREEN PHOTO VIEWER
+   ========================================= */
+
+#photoViewer{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    cursor:pointer;
+}
+
+#viewerImage{
+    max-width:95%;
+    max-height:95%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    cursor:default;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+   ========================================= */
+
+#closeViewer{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:#fff;
+    font-size:42px;
+    font-weight:300;
+    line-height:1;
+    cursor:pointer;
+    z-index:10000;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width:700px){
+
+    body{
+        padding:10px;
+    }
+
+    .gallery-video{
+        margin-bottom:20px;
+    }
+
+    .gallery-video video{
+        max-height:60vh;
+    }
+
+    .gallery{
+        grid-template-columns:repeat(2, 1fr);
+        grid-auto-rows:140px;
+        gap:8px;
+    }
+
+    .photo.vertical-small{
+        grid-column:span 1;
+        grid-row:span 2;
+    }
+
+    .photo.vertical-large{
+        grid-column:span 1;
+        grid-row:span 3;
+    }
+
+    .photo.horizontal-small{
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .photo.horizontal-large{
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .photo.square{
+        grid-column:span 1;
+        grid-row:span 1;
+    }
+
+    #photoViewer{
+        padding:15px;
+    }
+
+    #viewerImage{
+        max-width:100%;
+        max-height:90%;
+    }
+
+    #closeViewer{
+        top:15px;
+        right:20px;
+        font-size:36px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================
+     VIDEO AT TOP
+     ========================================= -->
+
+<div class="gallery-video">
+
+```
+<video controls playsinline>
+    <source src="image/gallery/Proposal.mp4" type="video/mp4">
+</video>
+```
+
+</div>
+
+<!-- =========================================
+     GALLERY
+     ========================================= -->
+
+<div class="gallery" id="gallery"></div>
+
+<!-- =========================================
+     FULL-SCREEN PHOTO VIEWER
+     ========================================= -->
+
+<div id="photoViewer">
+
+```
+<span id="closeViewer">&times;</span>
+
+<img id="viewerImage" src="" alt="">
+```
+
+</div>
+
+<script>
+
+
+/* =========================================
+   CREATE ALL 250 PHOTO FILENAMES
+   ========================================= */
+
+const photos = [];
+
+for(let i = 1; i <= 250; i++){
+
+    photos.push(`image/gallery/${i}.jpg`);
+
+}
+
+
+/* =========================================
+   SHUFFLE PHOTOS
+   ========================================= */
+
+function shuffle(array){
+
+    for(let i = array.length - 1; i > 0; i--){
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+
+    }
+
+    return array;
+
+}
+
+
+/* =========================================
+   RANDOM IMAGE SIZES
+   ========================================= */
+
+const sizes = [
+
+    "vertical-small",
+    "vertical-large",
+    "horizontal-small",
+    "horizontal-large",
+    "square"
+
+];
+
+
+/* =========================================
+   GET GALLERY
+   ========================================= */
+
+const gallery = document.getElementById("gallery");
+
+
+/* =========================================
+   SHUFFLE AND DISPLAY ALL 250 PHOTOS
+   ========================================= */
+
+shuffle(photos).forEach(photo => {
+
+    const img = document.createElement("img");
+
+    img.src = photo;
+
+    img.alt = "";
+
+    img.classList.add(
+        "photo",
+        sizes[Math.floor(Math.random() * sizes.length)]
+    );
+
+
+    /* =====================================
+       HIDE MISSING IMAGES
+       ===================================== */
+
+    img.onerror = function(){
+
+        this.style.display = "none";
+
+    };
+
+
+    /* =====================================
+       OPEN PHOTO LARGER WHEN CLICKED
+       ===================================== */
+
+    img.addEventListener("click", function(){
+
+        const viewer = document.getElementById("photoViewer");
+
+        const viewerImage = document.getElementById("viewerImage");
+
+        viewerImage.src = this.src;
+
+        viewer.style.display = "flex";
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+
+    gallery.appendChild(img);
+
+});
+
+
+/* =========================================
+   CLOSE PHOTO VIEWER
+   ========================================= */
+
+const photoViewer = document.getElementById("photoViewer");
+
+const closeViewer = document.getElementById("closeViewer");
+
+const viewerImage = document.getElementById("viewerImage");
+
+
+closeViewer.addEventListener("click", function(){
+
+    photoViewer.style.display = "none";
+
+    viewerImage.src = "";
+
+    document.body.style.overflow = "";
+
+});
+
+
+/* =========================================
+   CLOSE BY CLICKING OUTSIDE PHOTO
+   ========================================= */
+
+photoViewer.addEventListener("click", function(event){
+
+    if(event.target === photoViewer){
+
+        photoViewer.style.display = "none";
+
+        viewerImage.src = "";
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+
+/* =========================================
+   CLOSE WITH ESCAPE KEY
+   ========================================= */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        photoViewer.style.display = "none";
+
+        viewerImage.src = "";
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
