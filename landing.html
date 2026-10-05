@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Photos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Meow+Script&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+}
+
+/* Main page */
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 25px;
+}
+
+/* Icons container */
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;
+    width: 100%;
+}
+
+/* Individual icon link */
+
+.icon-link {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.35s ease;
+}
+
+.icon-link:hover {
+    transform: translateY(-8px);
+}
+
+/* Circular photo */
+
+.photo-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+    transition: box-shadow 0.4s ease;
+}
+
+/* Image */
+
+.photo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Hover glow */
+
+.icon-link:hover .photo-circle {
+    box-shadow: 0 0 40px rgba(255,255,255,0.2);
+}
+
+/* Text underneath */
+
+.icon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+/* Small description */
+
+.icon-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-top: 7px;
+    max-width: 220px;
+    line-height: 1.6;
+}
+
+/* Back link */
+
+.back {
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.back:hover {
+    opacity: 1;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    .page {
+        padding: 80px 20px 50px;
+    }
+
+    .icon-container {
+        gap: 30px;
+    }
+
+    .photo-circle {
+        width: 145px;
+        height: 145px;
+    }
+
+    .icon-title {
+        font-size: 23px;
+        margin-top: 16px;
+    }
+
+    .icon-description {
+        font-size: 8px;
+        max-width: 145px;
+    }
+
+    .back {
+        top: 25px;
+        left: 25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="main.html" class="back">← Back</a>
+
+<div class="page">
+
+
+<div class="icon-container">
+
+    <!-- ADD PHOTOS -->
+
+    <a
+        href="https://drive.google.com/drive/folders/1z7_6pic-RoFKHb_oQdmwpwazd0aKXcIa?usp=drive_link"
+        target="_blank"
+        class="icon-link"
+    >
+
+        <div class="photo-circle">
+
+            <img
+                src="image/img3.JPG"
+                alt="Add Photos"
+            >
+
+        </div>
+
+        <div class="icon-title">
+            Add Photos
+        </div>
+
+        <div class="icon-description">
+            Share your photos with us
+        </div>
+
+    </a>
+
+
+    <!-- GALLERY -->
+
+    <a
+        href="gallery3.html"
+        class="icon-link"
+    >
+
+        <div class="photo-circle">
+
+            <img
+                src="image/img2.jpg"
+                alt="View Photos"
+            >
+
+        </div>
+
+        <div class="icon-title">
+            View Photos
+        </div>
+
+        <div class="icon-description">
+            See everyone's photos
+        </div>
+
+    </a>
+
+</div>
+
+
+</div>
+
+</body>
+</html>
