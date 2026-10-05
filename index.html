@@ -1,341 +1,422 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
-    <style>
-        /* Reset default browser styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<style>
+    /* Reset default browser styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Full-screen black background */
+    body {
+        background-color: #000;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Center image */
+    .center-image {
+        width: 600px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        user-select: none;
+    }
+
+    /* Slight zoom on hover */
+    .center-image:hover {
+        transform: scale(1.05);
+    }
+
+    /* Slight shrink when clicked */
+    .center-image:active {
+        transform: scale(0.98);
+    }
+
+    /* ---------------- PASSWORD MODAL ---------------- */
+
+    .password-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.90);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        padding: 20px;
+    }
+
+    .password-modal.active {
+        display: flex;
+    }
+
+    /* Password box */
+    .password-box {
+        width: min(420px, 90vw);
+        background: #000;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        padding: 45px 35px;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+    }
+
+    /* Title */
+    .password-box h2 {
+        color: white;
+        font-family: Georgia, serif;
+        font-size: 2.2rem;
+        font-weight: normal;
+        margin-bottom: 12px;
+    }
+
+    /* Description */
+    .password-box p {
+        color: #ddd;
+        font-family: Georgia, serif;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+
+    /* Password input */
+    .password-input {
+        width: 100%;
+        padding: 14px 16px;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 1rem;
+        text-align: center;
+        outline: none;
+        margin-bottom: 18px;
+    }
+
+    .password-input:focus {
+        border-color: white;
+    }
+
+    /* Enter button */
+    .password-submit {
+        width: 100%;
+        padding: 14px;
+        background: white;
+        color: black;
+        border: 2px solid white;
+        font-family: Arial, sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .password-submit:hover {
+        background: black;
+        color: white;
+    }
+
+    /* Close button */
+    .password-close {
+        display: block;
+        margin-top: 18px;
+        color: #aaa;
+        font-family: Arial, sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+
+    .password-close:hover {
+        color: white;
+    }
+
+    /* Incorrect password message */
+    .password-error {
+        display: none;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 0.85rem;
+        margin-top: 15px;
+    }
+
+    .password-error.show {
+        display: block;
+    }
+
+    /* ---------------- MOBILE ---------------- */
+
+    @media (max-width: 700px) {
+
+        .center-image {
+            width: 85vw;
+            max-width: 600px;
         }
 
-        /* Full-screen black background */
+        .password-box {
+            padding: 40px 25px;
+        }
+
+        .password-box h2 {
+            font-size: 2rem;
+        }
+
+    }
+
+    /* ---------------- MOBILE WARNING SCREEN ---------------- */
+
+    #mobile-warning {
+        display: none;
+    }
+
+    @media screen and (max-width: 700px) {
+
         body {
-            background-color: #000;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100dvh;
             overflow: hidden;
         }
 
-        /* Center image */
-        .center-image {
-            width: 600px;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            user-select: none;
-        }
-
-        /* Slight zoom on hover */
-        .center-image:hover {
-            transform: scale(1.05);
-        }
-
-        /* Slight shrink when clicked */
-        .center-image:active {
-            transform: scale(0.98);
-        }
-
-        /* ---------------- PASSWORD MODAL ---------------- */
-
-        .password-modal {
+        #mobile-warning {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.90);
-            display: none;
+            inset: 0;
+            z-index: 100000;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            padding: 20px;
-        }
-
-        .password-modal.active {
-            display: flex;
-        }
-
-        /* Password box */
-        .password-box {
-            width: min(420px, 90vw);
+            padding: 35px;
             background: #000;
-            border: 1px solid rgba(255, 255, 255, 0.55);
-            padding: 45px 35px;
+            color: #fff;
             text-align: center;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+            font-family: Georgia, serif;
         }
 
-        /* Title */
-        .password-box h2 {
-            color: white;
-            font-family: Georgia, serif;
-            font-size: 2.2rem;
+        #mobile-warning .laptop-icon {
+            font-size: 55px;
+            margin-bottom: 30px;
+        }
+
+        #mobile-warning h1 {
+            font-size: 27px;
             font-weight: normal;
-            margin-bottom: 12px;
-        }
-
-        /* Description */
-        .password-box p {
-            color: #ddd;
-            font-family: Georgia, serif;
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-
-        /* Password input */
-        .password-input {
-            width: 100%;
-            padding: 14px 16px;
-            background: #111;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-            margin-bottom: 18px;
-        }
-
-        .password-input:focus {
-            border-color: white;
-        }
-
-        /* Enter button */
-        .password-submit {
-            width: 100%;
-            padding: 14px;
-            background: white;
-            color: black;
-            border: 2px solid white;
-            font-family: Arial, sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .password-submit:hover {
-            background: black;
-            color: white;
-        }
-
-        /* Close button */
-        .password-close {
-            display: block;
-            margin-top: 18px;
-            color: #aaa;
-            font-family: Arial, sans-serif;
-            font-size: 0.85rem;
             letter-spacing: 1px;
-            cursor: pointer;
+            margin-bottom: 20px;
         }
 
-        .password-close:hover {
-            color: white;
+        #mobile-warning p {
+            color: #ccc;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 320px;
         }
 
-        /* Incorrect password message */
-        .password-error {
-            display: none;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 0.85rem;
-            margin-top: 15px;
+        #mobile-warning .warning-line {
+            width: 55px;
+            height: 1px;
+            background: #777;
+            margin: 25px 0;
         }
+    }
 
-        .password-error.show {
-            display: block;
-        }
+</style>
+```
 
-        /* ---------------- MOBILE ---------------- */
-
-        @media (max-width: 700px) {
-
-            .center-image {
-                width: 85vw;
-                max-width: 600px;
-            }
-
-            .password-box {
-                padding: 40px 25px;
-            }
-
-            .password-box h2 {
-                font-size: 2rem;
-            }
-
-        }
-
-    </style>
 </head>
 
 <body>
 
-    <!-- Clicking the image opens the password window -->
-    <img
-        src="image/wire.png"
-        alt="Enter Site"
-        class="center-image"
-        onclick="openPassword()"
-    >
+```
+<!-- ================= MOBILE WARNING ================= -->
+
+<div id="mobile-warning">
+    <div class="laptop-icon">💻</div>
+
+    <h1>Please Open on a Laptop</h1>
+
+    <div class="warning-line"></div>
+
+    <p>
+        This experience is designed to be viewed on a laptop
+        or desktop computer.
+    </p>
+
+    <p style="margin-top: 15px;">
+        Please open this website on your computer to continue.
+    </p>
+</div>
 
 
-    <!-- ================= PASSWORD WINDOW ================= -->
+<!-- Clicking the image opens the password window -->
+<img
+    src="image/wire.png"
+    alt="Enter Site"
+    class="center-image"
+    onclick="openPassword()"
+>
 
-    <div class="password-modal" id="passwordModal">
 
-        <div class="password-box">
+<!-- ================= PASSWORD WINDOW ================= -->
 
-            <p>Enter the password.</p>
+<div class="password-modal" id="passwordModal">
 
-            <input
-                type="password"
-                id="passwordInput"
-                class="password-input"
-                placeholder="Password"
-                autocomplete="off"
-                onkeydown="handlePasswordKey(event)"
-            >
+    <div class="password-box">
 
-            <button
-                class="password-submit"
-                onclick="checkPassword()"
-            >
-                Enter
-            </button>
+        <p>Enter the password.</p>
 
-            <div
-                class="password-error"
-                id="passwordError"
-            >
-                Incorrect password. Please try again.
-            </div>
+        <input
+            type="password"
+            id="passwordInput"
+            class="password-input"
+            placeholder="Password"
+            autocomplete="off"
+            onkeydown="handlePasswordKey(event)"
+        >
 
-            <span
-                class="password-close"
-                onclick="closePassword()"
-            >
-                Close
-            </span>
+        <button
+            class="password-submit"
+            onclick="checkPassword()"
+        >
+            Enter
+        </button>
 
+        <div
+            class="password-error"
+            id="passwordError"
+        >
+            Incorrect password. Please try again.
         </div>
+
+        <span
+            class="password-close"
+            onclick="closePassword()"
+        >
+            Close
+        </span>
 
     </div>
 
-
-    <script>
-
-        /* ==========================================
-           CHANGE YOUR PASSWORD HERE
-           ========================================== */
-
-        const correctPassword = "7982";
+</div>
 
 
-        /* ==========================================
-           OPEN PASSWORD WINDOW
-           ========================================== */
+<script>
 
-        function openPassword() {
+    /* ==========================================
+       CHANGE YOUR PASSWORD HERE
+       ========================================== */
 
-            const modal = document.getElementById("passwordModal");
-            const input = document.getElementById("passwordInput");
-            const error = document.getElementById("passwordError");
-
-            modal.classList.add("active");
-
-            input.value = "";
-            error.classList.remove("show");
-
-            setTimeout(() => {
-                input.focus();
-            }, 100);
-
-        }
+    const correctPassword = "0311";
 
 
-        /* ==========================================
-           CLOSE PASSWORD WINDOW
-           ========================================== */
+    /* ==========================================
+       OPEN PASSWORD WINDOW
+       ========================================== */
 
-        function closePassword() {
+    function openPassword() {
 
-            document
-                .getElementById("passwordModal")
-                .classList.remove("active");
+        const modal = document.getElementById("passwordModal");
+        const input = document.getElementById("passwordInput");
+        const error = document.getElementById("passwordError");
 
-        }
+        modal.classList.add("active");
 
+        input.value = "";
+        error.classList.remove("show");
 
-        /* ==========================================
-           CHECK PASSWORD
-           ========================================== */
+        setTimeout(() => {
+            input.focus();
+        }, 100);
 
-        function checkPassword() {
-
-            const input = document.getElementById("passwordInput");
-            const error = document.getElementById("passwordError");
-
-            if (input.value === correctPassword) {
-
-                /* Correct password → go to main.html */
-                window.location.href = "main.html";
-
-            } else {
-
-                /* Incorrect password */
-                error.classList.add("show");
-
-                input.value = "";
-                input.focus();
-
-            }
-
-        }
+    }
 
 
-        /* ==========================================
-           PRESS ENTER TO SUBMIT
-           ========================================== */
+    /* ==========================================
+       CLOSE PASSWORD WINDOW
+       ========================================== */
 
-        function handlePasswordKey(event) {
-
-            if (event.key === "Enter") {
-
-                checkPassword();
-
-            }
-
-        }
-
-
-        /* ==========================================
-           CLICK OUTSIDE BOX TO CLOSE
-           ========================================== */
+    function closePassword() {
 
         document
             .getElementById("passwordModal")
-            .addEventListener("click", function(event) {
+            .classList.remove("active");
 
-                if (event.target === this) {
+    }
 
-                    closePassword();
 
-                }
+    /* ==========================================
+       CHECK PASSWORD
+       ========================================== */
 
-            });
+    function checkPassword() {
 
-    </script>
+        const input = document.getElementById("passwordInput");
+        const error = document.getElementById("passwordError");
+
+        if (input.value === correctPassword) {
+
+            /* Correct password → go to main.html */
+            window.location.href = "main.html";
+
+        } else {
+
+            /* Incorrect password */
+            error.classList.add("show");
+
+            input.value = "";
+            input.focus();
+
+        }
+
+    }
+
+
+    /* ==========================================
+       PRESS ENTER TO SUBMIT
+       ========================================== */
+
+    function handlePasswordKey(event) {
+
+        if (event.key === "Enter") {
+
+            checkPassword();
+
+        }
+
+    }
+
+
+    /* ==========================================
+       CLICK OUTSIDE BOX TO CLOSE
+       ========================================== */
+
+    document
+        .getElementById("passwordModal")
+        .addEventListener("click", function(event) {
+
+            if (event.target === this) {
+
+                closePassword();
+
+            }
+
+        });
+
+</script>
+
 
 </body>
 </html>
-
