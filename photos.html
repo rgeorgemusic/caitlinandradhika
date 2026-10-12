@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 
@@ -88,7 +87,7 @@ body {
     animation: photoScroll 8s ease-in-out infinite alternate;
 }
 
-/* Move photo from top to bottom */
+/* Move photo farther down to show the rest of the photo */
 
 @keyframes photoScroll {
 
@@ -97,7 +96,7 @@ body {
     }
 
     100% {
-        transform: translateY(calc(-100% + 280px));
+        transform: translateY(calc(280px - 100%));
     }
 
 }
@@ -106,6 +105,59 @@ body {
 
 .icon-link:hover .portrait-frame {
     box-shadow: 0 0 35px rgba(255,255,255,0.15);
+}
+
+/* Elopement: Landscape photo fitted to the attached photo's proportions */
+
+.icon-link:nth-child(2) .portrait-frame {
+    width: 280px;
+    height: 270px;
+}
+
+/* Keep the entire Elopement photo visible without cropping */
+
+.icon-link:nth-child(2) .portrait-image {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    animation: none;
+}
+
+/* Wedding: Regular square photo */
+
+.icon-link:nth-child(3) .portrait-frame {
+    width: 220px;
+    height: 220px;
+}
+
+/* Keep Wedding photo fitted inside square */
+
+.icon-link:nth-child(3) .portrait-image {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    animation: none;
+}
+
+/* Party: Fit the entire heart-shaped image */
+
+.icon-link:nth-child(3) .portrait-frame {
+    width: 280px;
+    height: 280px;
+    overflow: visible;
+    border-radius: 0;
+}
+
+/* Keep the Party image fully visible without cropping */
+
+.icon-link:nth-child(3) .portrait-image {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    animation: none;
 }
 
 /* Text underneath */
@@ -166,9 +218,48 @@ body {
         }
 
         100% {
-            transform: translateY(calc(-100% + 230px));
+            transform: translateY(calc(230px - 100%));
         }
 
+    }
+
+    /* Elopement: Landscape photo */
+
+    .icon-link:nth-child(2) .portrait-frame {
+        width: 200px;
+        height: 190px;
+    }
+
+    .icon-link:nth-child(2) .portrait-image {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
+        animation: none;
+    }
+
+    /* Wedding square */
+
+    .icon-link:nth-child(3) .portrait-frame {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Party: Keep the entire image visible on mobile */
+
+    .icon-link:nth-child(3) .portrait-frame {
+        width: 180px;
+        height: 180px;
+        overflow: visible;
+        border-radius: 0;
+    }
+
+    .icon-link:nth-child(3) .portrait-image {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
+        animation: none;
     }
 
     .icon-title {
@@ -206,9 +297,48 @@ body {
         }
 
         100% {
-            transform: translateY(calc(-100% + 190px));
+            transform: translateY(calc(190px - 100%));
         }
 
+    }
+
+    /* Elopement: Landscape photo sized for smaller phones */
+
+    .icon-link:nth-child(2) .portrait-frame {
+        width: 125px;
+        height: 120px;
+    }
+
+    .icon-link:nth-child(2) .portrait-image {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
+        animation: none;
+    }
+
+    /* Wedding square */
+
+    .icon-link:nth-child(3) .portrait-frame {
+        width: 95px;
+        height: 95px;
+    }
+
+    /* Party: Fit the image to the available mobile space */
+
+    .icon-link:nth-child(3) .portrait-frame {
+        width: 115px;
+        height: 115px;
+        overflow: visible;
+        border-radius: 0;
+    }
+
+    .icon-link:nth-child(3) .portrait-image {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
+        animation: none;
     }
 
     .icon-title {
@@ -234,73 +364,69 @@ body {
 
 <div class="page">
 
+    <div class="icon-container">
 
-<div class="icon-container">
+        <!-- PROPOSAL -->
 
-    <!-- PROPOSAL -->
+        <a href="gallery1.html" class="icon-link">
 
-    <a href="gallery1.html" class="icon-link">
+            <div class="portrait-frame">
 
-        <div class="portrait-frame">
+                <img
+                    src="image/photobooth.jpg"
+                    alt="Proposal"
+                    class="portrait-image"
+                >
 
-            <img
-                src="image/photobooth.jpg"
-                alt="Proposal"
-                class="portrait-image"
-            >
+            </div>
 
-        </div>
+            <div class="icon-title">
+                Proposal
+            </div>
 
-        <div class="icon-title">
-            Proposal
-        </div>
+        </a>
 
-    </a>
+        <!-- ELOPEMENT -->
 
+        <a href="gallery2.html" class="icon-link">
 
-    <!-- ELOPEMENT -->
+            <div class="portrait-frame">
 
-    <a href="gallery2.html" class="icon-link">
+                <img
+                    src="image/elopement.jpg"
+                    alt="Elopement"
+                    class="portrait-image"
+                >
 
-        <div class="portrait-frame">
+            </div>
 
-            <img
-                src="image/photobooth.jpg"
-                alt="Elopement"
-                class="portrait-image"
-            >
+            <div class="icon-title">
+                Elopement
+            </div>
 
-        </div>
+        </a>
 
-        <div class="icon-title">
-            Elopement
-        </div>
+        <!-- PARTY -->
 
-    </a>
+        <a href="landing.html" class="icon-link">
 
+            <div class="portrait-frame">
 
-    <!-- WEDDING -->
+                <img
+                    src="image/motif.png"
+                    alt="Party"
+                    class="portrait-image"
+                >
 
-    <a href="landing.html" class="icon-link">
+            </div>
 
-        <div class="portrait-frame">
+            <div class="icon-title">
+                Party
+            </div>
 
-            <img
-                src="image/photobooth.jpg"
-                alt="Wedding"
-                class="portrait-image"
-            >
+        </a>
 
-        </div>
-
-        <div class="icon-title">
-            Wedding
-        </div>
-
-    </a>
-
-</div>
-
+    </div>
 
 </div>
 
