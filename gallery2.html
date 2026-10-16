@@ -1,651 +1,677 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gallery</title>
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    background: #000;
-    scroll-behavior: smooth;
-}
-
-body {
-    background: #000;
-    color: #fff;
-    padding: 30px;
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* =========================================
-   BACKGROUND MUSIC
-   ========================================= */
-
-#backgroundMusic {
-    display: none;
-}
-
-/* =========================================
-   GALLERY
-   Staggered editorial layout
-   ========================================= */
-
-.gallery {
-    width: 100%;
-    max-width: 1700px;
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-auto-rows: 65px;
-    grid-auto-flow: dense;
-    gap: 14px;
-    align-items: start;
-}
-
-/* =========================================
-   IMAGES
-   ========================================= */
-
-.photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    cursor: pointer;
-    background: #000;
-    border-radius: 2px;
-
-    opacity: 0;
-    animation: photoFadeIn 0.6s ease forwards;
-
-    transition: opacity 0.35s ease;
-}
-
-.photo:hover {
-    opacity: 0.85;
-}
-
-@keyframes photoFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* =========================================
-   PORTRAIT AND LANDSCAPE SIZES
-   ========================================= */
-
-/* Small portrait */
-
-.photo.vertical-small {
-    grid-column: span 3;
-    grid-row: span 5;
-}
-
-/* Tall portrait */
-
-.photo.vertical-large {
-    grid-column: span 3;
-    grid-row: span 7;
-}
-
-/* Small landscape */
-
-.photo.horizontal-small {
-    grid-column: span 5;
-    grid-row: span 4;
-}
-
-/* Wide landscape */
-
-.photo.horizontal-large {
-    grid-column: span 6;
-    grid-row: span 5;
-}
-
-/* Square */
-
-.photo.square {
-    grid-column: span 3;
-    grid-row: span 4;
-}
-
-/* =========================================
-   FULL-SCREEN PHOTO VIEWER
-   ========================================= */
-
-#photoViewer {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-    height: 100dvh;
-
-    background: rgba(0, 0, 0, 0.97);
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 40px;
-    cursor: pointer;
-}
-
-#viewerImage {
-    max-width: 95%;
-    max-height: 92%;
-    max-height: 92dvh;
-
-    width: auto;
-    height: auto;
-
-    object-fit: contain;
-    display: block;
-    cursor: default;
-}
-
-/* =========================================
-   CLOSE BUTTON
-   ========================================= */
-
-#closeViewer {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-
-    color: #fff;
-    font-family: Arial, sans-serif;
-    font-size: 42px;
-    font-weight: 300;
-    line-height: 1;
-
-    cursor: pointer;
-    z-index: 10000;
-
-    transition: opacity 0.3s ease;
-}
-
-#closeViewer:hover {
-    opacity: 0.6;
-}
-
-/* =========================================
-   TABLET
-   ========================================= */
-
-@media (max-width: 1000px) {
-
-    body {
-        padding: 20px;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        grid-auto-rows: 55px;
-        gap: 10px;
-    }
-
-    .photo.vertical-small {
-        grid-column: span 2;
-        grid-row: span 4;
-    }
-
-    .photo.vertical-large {
-        grid-column: span 2;
-        grid-row: span 6;
-    }
-
-    .photo.horizontal-small {
-        grid-column: span 4;
-        grid-row: span 3;
-    }
-
-    .photo.horizontal-large {
-        grid-column: span 4;
-        grid-row: span 4;
-    }
-
-    .photo.square {
-        grid-column: span 2;
-        grid-row: span 3;
-    }
-
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
-
-    body {
-        padding: 10px;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-auto-rows: 55px;
-        gap: 7px;
-    }
-
-    /* Portrait photos */
-
-    .photo.vertical-small {
-        grid-column: span 2;
-        grid-row: span 4;
-    }
-
-    .photo.vertical-large {
-        grid-column: span 2;
-        grid-row: span 5;
-    }
-
-    /* Landscape photos */
-
-    .photo.horizontal-small {
-        grid-column: span 4;
-        grid-row: span 3;
-    }
-
-    .photo.horizontal-large {
-        grid-column: span 4;
-        grid-row: span 4;
-    }
-
-    /* Square photos */
-
-    .photo.square {
-        grid-column: span 2;
-        grid-row: span 3;
-    }
-
-    #photoViewer {
-        padding: 15px;
-    }
-
-    #viewerImage {
-        max-width: 100%;
-        max-height: 88%;
-        max-height: 88dvh;
-    }
-
-    #closeViewer {
-        top: 15px;
-        right: 18px;
-        font-size: 36px;
-    }
-
-}
-
-/* =========================================
-   SMALL PHONES
-   ========================================= */
-
-@media (max-width: 380px) {
-
-    .gallery {
-        grid-auto-rows: 48px;
-        gap: 5px;
-    }
-
-    .photo.vertical-small {
-        grid-row: span 4;
-    }
-
-    .photo.vertical-large {
-        grid-row: span 5;
-    }
-
-    .photo.horizontal-small {
-        grid-row: span 3;
-    }
-
-    .photo.horizontal-large {
-        grid-row: span 4;
-    }
-
-    .photo.square {
-        grid-row: span 3;
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #000;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            padding: 30px;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ==============================
+           BACKGROUND MUSIC
+           ============================== */
+
+        #backgroundMusic {
+            display: none;
+        }
+
+        /* ==============================
+           PHOTO GALLERY
+           ============================== */
+
+        .gallery {
+            width: 100%;
+            max-width: 1700px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            align-items: start;
+        }
+
+        .photo {
+            display: block;
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            object-position: center;
+            background: #111;
+            border-radius: 2px;
+            cursor: pointer;
+            opacity: 0;
+            animation: photoFadeIn 0.6s ease forwards;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes photoFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ==============================
+           FULL-SCREEN PHOTO VIEWER
+           ============================== */
+
+        #photoViewer {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            background: rgba(0, 0, 0, 0.97);
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        #viewerImage {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* ==============================
+           CLOSE BUTTON
+           ============================== */
+
+        #closeViewer {
+            position: absolute;
+            top: 18px;
+            right: 28px;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 44px;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10002;
+            padding: 5px 10px;
+            background: transparent;
+            border: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #closeViewer:hover {
+            opacity: 0.6;
+        }
+
+        /* ==============================
+           LEFT AND RIGHT ARROWS
+           ============================== */
+
+        .viewerArrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10001;
+            width: 52px;
+            height: 72px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(40, 40, 40, 0.55);
+            color: #fff;
+            font-size: 42px;
+            font-family: Arial, sans-serif;
+            font-weight: 300;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s ease, opacity 0.2s ease;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .viewerArrow:hover {
+            background: rgba(100, 100, 100, 0.75);
+        }
+
+        #prevPhoto {
+            left: 18px;
+        }
+
+        #nextPhoto {
+            right: 18px;
+        }
+
+        /* ==============================
+           PHOTO COUNTER
+           ============================== */
+
+        #photoCounter {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            z-index: 10001;
+            user-select: none;
+        }
+
+        /* ==============================
+           TABLET
+           ============================== */
+
+        @media (max-width: 1000px) {
+            body {
+                padding: 20px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            #photoViewer {
+                padding: 55px 65px;
+            }
+
+            #prevPhoto {
+                left: 8px;
+            }
+
+            #nextPhoto {
+                right: 8px;
+            }
+
+            .viewerArrow {
+                width: 46px;
+                height: 62px;
+                font-size: 36px;
+            }
+        }
+
+        /* ==============================
+           MOBILE
+           ============================== */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .photo {
+                aspect-ratio: 3 / 2;
+            }
+
+            #photoViewer {
+                padding: 55px 10px;
+            }
+
+            #viewerImage {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            #closeViewer {
+                top: 10px;
+                right: 12px;
+                font-size: 38px;
+            }
+
+            .viewerArrow {
+                width: 38px;
+                height: 54px;
+                font-size: 30px;
+                background: rgba(40, 40, 40, 0.55);
+            }
+
+            #prevPhoto {
+                left: 5px;
+            }
+
+            #nextPhoto {
+                right: 5px;
+            }
+
+            #photoCounter {
+                bottom: 14px;
+                font-size: 12px;
+                padding: 7px 12px;
+            }
+        }
+
+        /* Reduce motion when requested by the device */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- =========================================
-     BACKGROUND MUSIC
-     ========================================= -->
+    <!-- ==============================
+         BACKGROUND MUSIC
+         ============================== -->
+
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="image/CCO.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- ==============================
+         PHOTO GALLERY
+         ============================== -->
+
+    <div class="gallery" id="gallery"></div>
+
+
+    <!-- ==============================
+         FULL-SCREEN PHOTO VIEWER
+         ============================== -->
+
+    <div
+        id="photoViewer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Photo viewer"
+        aria-hidden="true"
+    >
+        <!-- Close button -->
+        <button
+            id="closeViewer"
+            type="button"
+            aria-label="Close photo viewer"
+            title="Close (Esc)"
+        >&times;</button>
+
+        <!-- Previous photo -->
+        <button
+            id="prevPhoto"
+            class="viewerArrow"
+            type="button"
+            aria-label="Previous photo"
+            title="Previous photo (Left arrow)"
+        >&#8249;</button>
+
+        <!-- Selected photo -->
+        <img id="viewerImage" src="" alt="">
+
+        <!-- Next photo -->
+        <button
+            id="nextPhoto"
+            class="viewerArrow"
+            type="button"
+            aria-label="Next photo"
+            title="Next photo (Right arrow)"
+        >&#8250;</button>
+
+        <!-- Photo number -->
+        <div id="photoCounter" aria-live="polite">1 / 100</div>
+    </div>
+
+
+    <script>
+        /* =========================================
+           BACKGROUND MUSIC
+           ========================================= */
+
+        const music = document.getElementById("backgroundMusic");
+
+        music.play().catch(function () {
+            // Some browsers block autoplay until
+            // the visitor interacts with the page.
+        });
+
+        document.addEventListener("click", function () {
+            if (music.paused) {
+                music.play().catch(function () {});
+            }
+        }, { once: true });
+
+
+        /* =========================================
+           PHOTO FILES
+
+           This creates the same paths as:
+           image/gallery2/1.jpg
+           image/gallery2/2.jpg
+           ...
+           image/gallery2/100.jpg
+
+           Change 100 to the total number of photos
+           if you want to display more or fewer.
+           ========================================= */
+
+        const photos = Array.from(
+            { length: 100 },
+            function (_, index) {
+                return "image/gallery2/" + (index + 1) + ".jpg";
+            }
+        );
+
+
+        /* =========================================
+           GALLERY ELEMENTS
+           ========================================= */
 
-<audio id="backgroundMusic" autoplay loop>
-    <source src="image/CC1.mp3" type="audio/mpeg">
-</audio>
-
-
-<!-- =========================================
-     GALLERY
-     ========================================= -->
-
-<div class="gallery" id="gallery"></div>
-
-
-<!-- =========================================
-     FULL-SCREEN PHOTO VIEWER
-     ========================================= -->
-
-<div id="photoViewer">
-
-    <span id="closeViewer">&times;</span>
-
-    <img id="viewerImage" src="" alt="">
-
-</div>
-
-
-<script>
-
-/* =========================================
-   PLAY BACKGROUND MUSIC
-   ========================================= */
-
-const music = document.getElementById("backgroundMusic");
-
-music.play().catch(function() {
-
-    /*
-       If autoplay is blocked, try again
-       after the visitor interacts.
-    */
-
-    document.addEventListener("click", function() {
-
-        music.play().catch(function() {});
-
-    }, { once: true });
-
-});
-
-
-/* =========================================
-   CREATE ALL 250 PHOTO FILENAMES
-   ========================================= */
-
-const photos = [];
-
-for (let i = 1; i <= 250; i++) {
-
-    photos.push(`image/gallery2/${i}.jpg`);
-
-}
-
-
-/* =========================================
-   SHUFFLE PHOTOS
-   ========================================= */
-
-function shuffle(array) {
-
-    for (let i = array.length - 1; i > 0; i--) {
-
-        const j = Math.floor(Math.random() * (i + 1));
-
-        [array[i], array[j]] = [array[j], array[i]];
-
-    }
-
-    return array;
-
-}
-
-
-/* =========================================
-   GET GALLERY
-   ========================================= */
-
-const gallery = document.getElementById("gallery");
-
-
-/* =========================================
-   AUTOMATIC PHOTO ORIENTATION DETECTION
-   ========================================= */
-
-function assignPhotoSize(img) {
-
-    const width = img.naturalWidth;
-    const height = img.naturalHeight;
-
-    if (!width || !height) {
-        return;
-    }
-
-    const ratio = width / height;
-
-    /*
-       Remove any previous size classes.
-    */
-
-    img.classList.remove(
-        "vertical-small",
-        "vertical-large",
-        "horizontal-small",
-        "horizontal-large",
-        "square"
-    );
-
-    /*
-       Portrait:
-       Height is greater than width.
-    */
-
-    if (ratio < 0.85) {
-
-        if (height / width >= 1.65) {
-
-            img.classList.add("vertical-large");
-
-        } else {
-
-            img.classList.add("vertical-small");
-
-        }
-
-    }
-
-    /*
-       Landscape:
-       Width is greater than height.
-    */
-
-    else if (ratio > 1.15) {
-
-        if (ratio >= 1.65) {
-
-            img.classList.add("horizontal-large");
-
-        } else {
-
-            img.classList.add("horizontal-small");
-
-        }
-
-    }
-
-    /*
-       Nearly square images.
-    */
-
-    else {
-
-        img.classList.add("square");
-
-    }
-
-}
-
-
-/* =========================================
-   SHUFFLE AND DISPLAY ALL 250 PHOTOS
-   ========================================= */
-
-shuffle(photos).forEach((photo, index) => {
-
-    const img = document.createElement("img");
-
-    img.src = photo;
-
-    img.alt = `Gallery photo ${index + 1}`;
-
-    img.loading = index < 12 ? "eager" : "lazy";
-
-    img.decoding = "async";
-
-    img.classList.add("photo");
-
-
-    /* =====================================
-       DETECT IMAGE ORIENTATION WHEN LOADED
-       ===================================== */
-
-    img.onload = function() {
-
-        assignPhotoSize(this);
-
-    };
-
-
-    /*
-       Handle images already loaded by the browser.
-    */
-
-    if (img.complete && img.naturalWidth > 0) {
-
-        assignPhotoSize(img);
-
-    }
-
-
-    /* =====================================
-       HIDE MISSING IMAGES
-       ===================================== */
-
-    img.onerror = function() {
-
-        this.style.display = "none";
-
-    };
-
-
-    /* =====================================
-       OPEN PHOTO LARGER WHEN CLICKED
-       ===================================== */
-
-    img.addEventListener("click", function() {
-
-        const viewer = document.getElementById("photoViewer");
-
+        const gallery = document.getElementById("gallery");
+        const photoViewer = document.getElementById("photoViewer");
         const viewerImage = document.getElementById("viewerImage");
+        const closeViewer = document.getElementById("closeViewer");
+        const prevPhoto = document.getElementById("prevPhoto");
+        const nextPhoto = document.getElementById("nextPhoto");
+        const photoCounter = document.getElementById("photoCounter");
 
-        viewerImage.src = this.src;
+        // Tracks the currently displayed photo.
+        let currentIndex = 0;
 
-        viewerImage.alt = this.alt;
+        // Tracks the element that opened the viewer.
+        let previouslyFocusedElement = null;
 
-        viewer.style.display = "flex";
-
-        document.body.style.overflow = "hidden";
-
-    });
-
-
-    gallery.appendChild(img);
-
-});
-
-
-/* =========================================
-   CLOSE PHOTO VIEWER
-   ========================================= */
-
-const photoViewer = document.getElementById("photoViewer");
-
-const closeViewer = document.getElementById("closeViewer");
-
-const viewerImage = document.getElementById("viewerImage");
+        // Used for touch swipe navigation.
+        let touchStartX = 0;
+        let touchStartY = 0;
 
 
-function closePhotoViewer() {
+        /* =========================================
+           BUILD THE GALLERY
+           ========================================= */
 
-    photoViewer.style.display = "none";
+        photos.forEach(function (photo, index) {
+            const img = document.createElement("img");
 
-    viewerImage.src = "";
+            img.src = photo;
+            img.alt = "Gallery photo " + (index + 1);
+            img.classList.add("photo");
 
-    viewerImage.alt = "";
+            img.loading = index < 6 ? "eager" : "lazy";
+            img.decoding = "async";
+            img.tabIndex = 0;
 
-    document.body.style.overflow = "";
+            // Hide photos that cannot be loaded.
+            img.onerror = function () {
+                this.style.display = "none";
+                console.error("Could not load photo:", photo);
+            };
 
-}
+            // Open the viewer at the selected photo.
+            img.addEventListener("click", function () {
+                openPhotoViewer(index);
+            });
 
+            // Allow keyboard users to open a photo.
+            img.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openPhotoViewer(index);
+                }
+            });
 
-closeViewer.addEventListener("click", function(event) {
-
-    event.stopPropagation();
-
-    closePhotoViewer();
-
-});
-
-
-/* =========================================
-   CLOSE BY CLICKING OUTSIDE PHOTO
-   ========================================= */
-
-photoViewer.addEventListener("click", function(event) {
-
-    if (event.target === photoViewer) {
-
-        closePhotoViewer();
-
-    }
-
-});
+            gallery.appendChild(img);
+        });
 
 
-/* =========================================
-   CLOSE WITH ESCAPE KEY
-   ========================================= */
+        /* =========================================
+           OPEN THE PHOTO VIEWER
+           ========================================= */
 
-document.addEventListener("keydown", function(event) {
+        function openPhotoViewer(index) {
+            currentIndex = index;
+            previouslyFocusedElement = document.activeElement;
 
-    if (event.key === "Escape") {
+            updateViewerImage();
 
-        closePhotoViewer();
+            photoViewer.style.display = "flex";
+            photoViewer.setAttribute("aria-hidden", "false");
 
-    }
+            // Prevent the page behind the viewer from scrolling.
+            document.body.style.overflow = "hidden";
 
-});
+            closeViewer.focus();
+        }
 
-</script>
+
+        /* =========================================
+           UPDATE THE DISPLAYED PHOTO
+           ========================================= */
+
+        function updateViewerImage() {
+            // Keep the index within the valid range.
+            if (currentIndex < 0) {
+                currentIndex = photos.length - 1;
+            }
+
+            if (currentIndex >= photos.length) {
+                currentIndex = 0;
+            }
+
+            viewerImage.src = photos[currentIndex];
+            viewerImage.alt =
+                "Gallery photo " + (currentIndex + 1) +
+                " of " + photos.length;
+
+            photoCounter.textContent =
+                (currentIndex + 1) + " / " + photos.length;
+
+            // Reset zoom/position if the browser supports it.
+            viewerImage.style.opacity = "1";
+        }
+
+
+        /* =========================================
+           SHOW THE NEXT PHOTO
+           ========================================= */
+
+        function showNextPhoto() {
+            if (photos.length === 0) return;
+
+            currentIndex++;
+
+            // Wrap back to the first photo at the end.
+            if (currentIndex >= photos.length) {
+                currentIndex = 0;
+            }
+
+            updateViewerImage();
+        }
+
+
+        /* =========================================
+           SHOW THE PREVIOUS PHOTO
+           ========================================= */
+
+        function showPreviousPhoto() {
+            if (photos.length === 0) return;
+
+            currentIndex--;
+
+            // Wrap to the last photo at the beginning.
+            if (currentIndex < 0) {
+                currentIndex = photos.length - 1;
+            }
+
+            updateViewerImage();
+        }
+
+
+        /* =========================================
+           NAVIGATION BUTTONS
+           ========================================= */
+
+        nextPhoto.addEventListener("click", function (event) {
+            event.stopPropagation();
+            showNextPhoto();
+        });
+
+        prevPhoto.addEventListener("click", function (event) {
+            event.stopPropagation();
+            showPreviousPhoto();
+        });
+
+
+        /* =========================================
+           CLOSE THE PHOTO VIEWER
+           ========================================= */
+
+        function closePhotoViewer() {
+            if (photoViewer.style.display !== "flex") {
+                return;
+            }
+
+            photoViewer.style.display = "none";
+            photoViewer.setAttribute("aria-hidden", "true");
+
+            viewerImage.src = "";
+            viewerImage.alt = "";
+
+            // Restore normal page scrolling.
+            document.body.style.overflow = "";
+
+            // Return keyboard focus to the original photo.
+            if (
+                previouslyFocusedElement &&
+                typeof previouslyFocusedElement.focus === "function"
+            ) {
+                previouslyFocusedElement.focus();
+            }
+        }
+
+        closeViewer.addEventListener("click", function (event) {
+            event.stopPropagation();
+            closePhotoViewer();
+        });
+
+
+        /* =========================================
+           CLOSE WHEN CLICKING OUTSIDE THE PHOTO
+           ========================================= */
+
+        photoViewer.addEventListener("click", function (event) {
+            if (event.target === photoViewer) {
+                closePhotoViewer();
+            }
+        });
+
+
+        /* =========================================
+           KEYBOARD NAVIGATION
+
+           Left arrow  = Previous photo
+           Right arrow = Next photo
+           Escape      = Close viewer
+           ========================================= */
+
+        document.addEventListener("keydown", function (event) {
+            if (photoViewer.style.display !== "flex") {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                event.preventDefault();
+                closePhotoViewer();
+            }
+
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+                showNextPhoto();
+            }
+
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                showPreviousPhoto();
+            }
+        });
+
+
+        /* =========================================
+           MOBILE SWIPE NAVIGATION
+
+           Swipe left  = Next photo
+           Swipe right = Previous photo
+           ========================================= */
+
+        photoViewer.addEventListener("touchstart", function (event) {
+            if (event.touches.length !== 1) return;
+
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        }, { passive: true });
+
+        photoViewer.addEventListener("touchend", function (event) {
+            if (event.changedTouches.length !== 1) return;
+
+            const touchEndX = event.changedTouches[0].clientX;
+            const touchEndY = event.changedTouches[0].clientY;
+
+            const differenceX = touchEndX - touchStartX;
+            const differenceY = touchEndY - touchStartY;
+
+            // Ignore short movements and mostly vertical gestures.
+            if (
+                Math.abs(differenceX) < 50 ||
+                Math.abs(differenceX) < Math.abs(differenceY)
+            ) {
+                return;
+            }
+
+            if (differenceX < 0) {
+                // Finger moved left: show the next photo.
+                showNextPhoto();
+            } else {
+                // Finger moved right: show the previous photo.
+                showPreviousPhoto();
+            }
+        }, { passive: true });
+
+    </script>
 
 </body>
 </html>
