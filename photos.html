@@ -190,6 +190,34 @@ body {
     opacity: 1;
 }
 
+/* Party message */
+
+.party-message {
+    display: none;
+    margin-top: 25px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    color: #fff;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.party-message.show {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Mobile */
 
 @media (max-width: 800px) {
@@ -352,6 +380,11 @@ body {
         left: 25px;
     }
 
+    .party-message {
+        font-size: 21px;
+        margin-top: 20px;
+    }
+
 }
 
 </style>
@@ -408,7 +441,7 @@ body {
 
         <!-- PARTY -->
 
-        <a href="landing.html" class="icon-link">
+        <a href="#" class="icon-link" id="partyLink">
 
             <div class="portrait-frame">
 
@@ -428,7 +461,26 @@ body {
 
     </div>
 
+    <!-- PARTY MESSAGE -->
+
+    <div class="party-message" id="partyMessage" aria-live="polite">
+        Check back here for Party Photos
+    </div>
+
 </div>
+
+<script>
+
+const partyLink = document.getElementById("partyLink");
+const partyMessage = document.getElementById("partyMessage");
+
+partyLink.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    partyMessage.classList.add("show");
+});
+
+</script>
 
 </body>
 </html>
