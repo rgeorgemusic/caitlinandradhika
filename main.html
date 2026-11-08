@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,325 +10,373 @@
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    background:#000;
-    color:#fff;
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
 /* ---------------- HERO ---------------- */
 
-.hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.video-container{
-    width:min(95vw,1200px);
+.video-container {
+    width: min(95vw, 1200px);
 }
 
-.hero video{
-    width:100%;
-    height:auto;
-    max-height:92vh;
-    display:block;
-    border-radius:12px;
+.hero video {
+    width: 100%;
+    height: auto;
+    max-height: 92vh;
+    display: block;
+    border-radius: 12px;
 }
 
 /* ---------------- SCROLL INDICATOR ---------------- */
 
-.scroll-indicator{
-    position:absolute;
-    bottom:30px;
-    left:50%;
-    transform:translateX(-50%);
-    text-align:center;
-    animation:bounce 2s infinite;
-    cursor:pointer;
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: inherit;
 }
 
-.scroll-indicator p{
-    font-size:14px;
-    letter-spacing:3px;
-    text-transform:uppercase;
+.scroll-indicator p {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-.arrow{
-    font-size:34px;
-    margin-top:8px;
+.arrow {
+    font-size: 34px;
+    margin-top: 8px;
 }
 
-@keyframes bounce{
+.scroll-indicator:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 8px;
+}
 
-    0%,20%,50%,80%,100%{
-        transform:translateX(-50%) translateY(0);
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
     }
 
-    40%{
-        transform:translateX(-50%) translateY(-12px);
+    40% {
+        transform: translateX(-50%) translateY(-12px);
     }
 
-    60%{
-        transform:translateX(-50%) translateY(-6px);
+    60% {
+        transform: translateX(-50%) translateY(-6px);
     }
-
 }
 
-body.scrolled .scroll-indicator{
-    opacity:0;
-    pointer-events:none;
-    transition:.5s;
+body.scrolled .scroll-indicator {
+    opacity: 0;
+    pointer-events: none;
+    transition: .5s;
 }
 
 /* ---------------- SECOND SECTION ---------------- */
 
-.content{
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding:90px 8%;
+.content {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 90px 8%;
 }
 
-/* ---------------- CAIT BACKGROUND VIDEO ---------------- */
+/* ---------------- DARK OVERLAY ---------------- */
 
-.background-video{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-    overflow:hidden;
+.background-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .58);
+    z-index: 1;
+    pointer-events: none;
 }
 
-.background-video video{
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform:translate(-50%,-50%);
+/* ---------------- CONTENT ABOVE OVERLAY ---------------- */
+
+.content-wrapper {
+    max-width: 1300px;
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
 }
 
-/* DARK OVERLAY */
-
-.background-overlay{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.58);
-    z-index:1;
+.party-details {
+    width: 100%;
 }
 
-/* ---------------- CONTENT ABOVE VIDEO ---------------- */
-
-.content-wrapper{
-    max-width:1300px;
-    width:100%;
-    display:block;
-    position:relative;
-    z-index:2;
-}
-
-.party-details{
-    width:100%;
-}
-
-.party-details h1{
-    font-family:'Meow Script',cursive;
-    font-size:5.5rem;
-    font-weight:normal;
-    margin-bottom:5px;
+.party-details h1 {
+    font-family: 'Meow Script', cursive;
+    font-size: 5.5rem;
+    font-weight: normal;
+    margin-bottom: 5px;
 }
 
 /* ---------------- PLAN SUBTITLE ---------------- */
 
-.plan-note{
-    font-family:'Inter',sans-serif;
-    color:#d6d6d6;
-    font-size:1rem;
-    line-height:2;
-    margin-bottom:45px;
+.plan-note {
+    font-family: 'Inter', sans-serif;
+    color: #d6d6d6;
+    font-size: 1rem;
+    line-height: 2;
+    margin-bottom: 45px;
 }
 
-/* -------- EVENT LAYOUT -------- */
+/* ---------------- EVENT LAYOUT ---------------- */
 
-.event{
-    display:grid;
-    grid-template-columns:260px 1fr;
-    gap:45px;
-    margin-bottom:70px;
-    align-items:flex-start;
-    padding-bottom:35px;
-    border-bottom:1px solid rgba(255,255,255,.25);
+.event {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 45px;
+    margin-bottom: 70px;
+    align-items: flex-start;
+    padding-bottom: 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
 }
 
-.event:last-child{
-    border-bottom:none;
+.event:last-child {
+    border-bottom: none;
 }
 
-.event h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:2.7rem;
-    font-weight:600;
-    margin-bottom:18px;
-    color:white;
-    letter-spacing:.5px;
+.event h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.7rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: white;
+    letter-spacing: .5px;
 }
 
-.event-details{
-    font-family:'Inter',sans-serif;
-    color:#d6d6d6;
-    font-size:1rem;
-    line-height:2;
+.event-details {
+    font-family: 'Inter', sans-serif;
+    color: #d6d6d6;
+    font-size: 1rem;
+    line-height: 2;
 }
 
-.event-details strong{
-    color:white;
-    font-weight:500;
+.event-details strong {
+    color: white;
+    font-weight: 500;
 }
 
-.event-description{
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.35rem;
-    line-height:1.9;
-    color:#efefef;
+.event-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    line-height: 1.9;
+    color: #efefef;
 }
 
-.event-description p{
-    margin-bottom:18px;
+.event-description p {
+    margin-bottom: 18px;
 }
 
-.event-description em{
-    color:white;
-    font-style:italic;
+.event-description em {
+    color: white;
+    font-style: italic;
+}
+
+/* ---------------- LINKS ---------------- */
+
+.event-description a {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.event-description a:hover {
+    color: #d6d6d6;
 }
 
 /* ---------------- FINAL SECTION ---------------- */
 
-.final-section{
-    min-height:auto;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:35px 8% 60px;
+.final-section {
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 8% 60px;
 }
 
-.final-wrapper{
-    width:100%;
-    max-width:1100px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+.final-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.final-video{
-    width:min(900px,100%);
-    margin-bottom:50px;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 0 35px rgba(255,255,255,.15);
+.final-video {
+    width: min(900px, 100%);
+    margin-bottom: 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 35px rgba(255, 255, 255, .15);
 }
 
-.final-video video{
-    width:100%;
-    display:block;
+.final-video video {
+    width: 100%;
+    display: block;
 }
 
-.button-group{
-    display:flex;
-    gap:30px;
-    flex-wrap:wrap;
-    justify-content:center;
+.button-group {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.button-group a{
-    text-decoration:none;
-    color:white;
-    border:2px solid white;
-    padding:18px 50px;
-    border-radius:60px;
-    font-size:1.05rem;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    transition:.35s;
+.button-group a {
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+    padding: 18px 50px;
+    border-radius: 60px;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: .35s;
 }
 
-.button-group a:hover{
-    background:white;
-    color:black;
+.button-group a:hover {
+    background: white;
+    color: black;
+}
+
+.button-group a:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 5px;
 }
 
 /* ---------------- MOBILE ---------------- */
 
-@media(max-width:900px){
+@media (max-width: 900px) {
 
-.content{
-    padding:80px 6%;
+    .content {
+        padding: 80px 6%;
+    }
+
+    .party-details {
+        width: 100%;
+    }
+
+    .party-details h1 {
+        text-align: center;
+        font-size: 4.3rem;
+    }
+
+    .plan-note {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .event {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .event h2 {
+        font-size: 2.2rem;
+    }
+
+    .event-description {
+        font-size: 1.2rem;
+    }
+
+    .final-section {
+        padding: 25px 6% 45px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .button-group a {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+    }
 }
 
-.party-details{
-    width:100%;
+@media (max-width: 480px) {
+
+    .hero {
+        padding: 12px;
+    }
+
+    .hero video {
+        max-height: 80vh;
+    }
+
+    .party-details h1 {
+        font-size: 3.8rem;
+    }
+
+    .event h2 {
+        font-size: 2rem;
+    }
+
+    .event-description {
+        font-size: 1.1rem;
+    }
+
+    .event-details {
+        font-size: .95rem;
+    }
+
+    .button-group a {
+        padding: 16px 25px;
+        font-size: .95rem;
+    }
 }
 
-.party-details h1{
-    text-align:center;
-    font-size:4.3rem;
-}
+@media (prefers-reduced-motion: reduce) {
 
-.plan-note{
-    text-align:center;
-    margin-bottom:35px;
-}
+    html {
+        scroll-behavior: auto;
+    }
 
-.event{
-    grid-template-columns:1fr;
-    gap:25px;
-}
+    .scroll-indicator {
+        animation: none;
+    }
 
-.event h2{
-    font-size:2.2rem;
-}
-
-.event-description{
-    font-size:1.2rem;
-}
-
-.final-section{
-    padding:25px 6% 45px;
-}
-
-.button-group{
-    flex-direction:column;
-    width:100%;
-}
-
-.button-group a{
-    width:100%;
-    max-width:320px;
-}
-
+    .button-group a {
+        transition: none;
+    }
 }
 
 </style>
@@ -344,16 +391,32 @@ body.scrolled .scroll-indicator{
 
     <div class="video-container">
 
-        <video id="weddingVideo" autoplay loop playsinline>
+        <video id="weddingVideo"
+               autoplay
+               loop
+               muted
+               playsinline
+               controls
+               aria-label="Wedding video">
+
             <source src="video/Wedding Video.mp4" type="video/mp4">
+
+            Your browser does not support HTML video.
+
         </video>
 
     </div>
 
-    <div class="scroll-indicator" onclick="scrollToContent()">
+    <button class="scroll-indicator"
+            type="button"
+            onclick="scrollToContent()"
+            aria-label="Scroll down to view the wedding plans">
+
         <p>Scroll Down</p>
+
         <div class="arrow">⌄</div>
-    </div>
+
+    </button>
 
 </section>
 
@@ -361,22 +424,19 @@ body.scrolled .scroll-indicator{
 
 <section class="content" id="content">
 
-    <!-- DARK OVERLAY -->
-
     <div class="background-overlay"></div>
-
-    <!-- CONTENT -->
 
     <div class="content-wrapper">
 
         <div class="party-details">
 
             <h1>The Plan</h1>
+
             <p class="plan-note">
                 Please check back here for more information.
             </p>
 
-            <!-- ================= PLACEHOLDER EVENT ================= -->
+            <!-- ================= WELCOME DRINKS ================= -->
 
             <div class="event">
 
@@ -387,9 +447,12 @@ body.scrolled .scroll-indicator{
                     <div class="event-details">
 
                         <strong>Date:</strong> May 28th, 2027<br>
+
                         <strong>Time:</strong> 6pm-10pm<br>
+
                         <strong>Location:</strong><br>
-                        Location Coming Soon! 
+
+                        Location Coming Soon!
 
                     </div>
 
@@ -399,11 +462,7 @@ body.scrolled .scroll-indicator{
 
                     <p>
                         More details about this event are coming soon.
-                        Please check back here for updates! 
-                    </p>
-
-                    <p>
-                        
+                        Please check back here for updates!
                     </p>
 
                 </div>
@@ -421,9 +480,13 @@ body.scrolled .scroll-indicator{
                     <div class="event-details">
 
                         <strong>Date:</strong> May 29, 2027<br>
+
                         <strong>Time:</strong> 6:30 PM – Late Night<br>
+
                         <strong>Location:</strong><br>
+
                         54 Rockaway Ave<br>
+
                         Brooklyn, NY 11233
 
                     </div>
@@ -437,22 +500,24 @@ body.scrolled .scroll-indicator{
                         Join us for food, drinks, and dancing at our favorite Brooklyn bar. All Night Skate.
                         Please wear whatever semi-formal fit makes you feel hot and dangerous on the dance floor.
                     </p>
-                        
+
                     <p>
-                        The night will begin at 7 pm (sharp) and go until late. Come ready to celebrate
-                        our love and yourselves for pouring into us along the way, from near and far.
+                        The night will begin at 7 pm (sharp) and go until late.
+                        Come ready to celebrate our love and yourselves for pouring into us along the way, from near and far.
                     </p>
+
+                    <p>
                         There are two trains close to this location: C Train off the Rockaway Ave stop
-                        and the J train off the Chauncey St stop. Trains are 24 hrs with reduced service late night.
-                        href="https://www.google.com/maps/search/?api=1&query=All+Night+Skate+Brooklyn+NYC"
-                    <p>
-
+                        and the J train off the Chauncey St stop.
+                        Trains run 24 hours, with reduced service late at night.
                     </p>
 
                     <p>
-                        <em>
-
-                        </em>
+                        <a href="https://www.google.com/maps/search/?api=1&query=All+Night+Skate+Brooklyn+NYC"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Get directions to All Night Skate
+                        </a>
                     </p>
 
                 </div>
@@ -470,9 +535,13 @@ body.scrolled .scroll-indicator{
                     <div class="event-details">
 
                         <strong>Date:</strong> May 30, 2027<br>
+
                         <strong>Time:</strong> 2:30 PM – Sunset<br>
+
                         <strong>Location:</strong><br>
+
                         157 Rockaway Beach Blvd<br>
+
                         Queens, NY 11694
 
                     </div>
@@ -489,13 +558,20 @@ body.scrolled .scroll-indicator{
                     </p>
 
                     <p>
-                        Please bring a towel, swim wear (if interested), sunscreen, and plenty of water. We'll have music, snacks and drinks.
-                        If it's cold, bring layers! We will have some easy-up tents up to the LEFT (if you're looking at the water)
-                        of the public bathrooms with a sign so you can't miss us.  
+                        Please bring a towel, swim wear (if interested), sunscreen,
+                        and plenty of water. We'll have music, snacks and drinks.
+                        If it's cold, bring layers! We will have some easy-up tents
+                        up to the LEFT (if you're looking at the water) of the
+                        public bathrooms with a sign so you can't miss us.
                         There are public restrooms and concessions nearby as well.
                     </p>
-                        For public transit (Q35 drops right at the entrance), map to The People's Beach at Jacob Riis Park. 
-                        If driving, you can park in the lot for $25 and walk on over. 
+
+                    <p>
+                        For public transit (Q35 drops right at the entrance),
+                        map to The People's Beach at Jacob Riis Park.
+                        If driving, you can park in the lot for $25 and walk on over.
+                    </p>
+
                     <p>
                         We will probably stay until a little after sunset!
                     </p>
@@ -519,7 +595,11 @@ body.scrolled .scroll-indicator{
         <div class="final-video">
 
             <video autoplay loop muted playsinline>
+
                 <source src="video/fran.mp4" type="video/mp4">
+
+                Your browser does not support HTML video.
+
             </video>
 
         </div>
@@ -540,37 +620,15 @@ body.scrolled .scroll-indicator{
 
 <script>
 
-/* ---------------- HERO VIDEO ---------------- */
-
-window.addEventListener("load", async () => {
-
-    const video = document.getElementById("weddingVideo");
-
-    try{
-
-        video.muted = false;
-        video.volume = 1.0;
-
-        await video.play();
-
-    }catch(e){
-
-        console.log("Autoplay with sound blocked.");
-
-    }
-
-});
-
-
 /* ---------------- SCROLL INDICATOR ---------------- */
 
 window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 50){
+    if (window.scrollY > 50) {
 
         document.body.classList.add("scrolled");
 
-    }else{
+    } else {
 
         document.body.classList.remove("scrolled");
 
@@ -578,14 +636,13 @@ window.addEventListener("scroll", () => {
 
 });
 
-
 /* ---------------- SCROLL TO CONTENT ---------------- */
 
-function scrollToContent(){
+function scrollToContent() {
 
     document.getElementById("content").scrollIntoView({
 
-        behavior:"smooth"
+        behavior: "smooth"
 
     });
 
