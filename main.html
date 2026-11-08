@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,6 +193,43 @@ body.scrolled .scroll-indicator {
     font-weight: 500;
 }
 
+/* ---------------- LOCATION LINKS ---------------- */
+
+.event-details a {
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, .7);
+    text-underline-offset: 4px;
+    font-weight: 500;
+    transition: color .3s;
+}
+
+.event-details a:hover {
+    color: #d6d6d6;
+}
+
+/* ---------------- ADD TO CALENDAR LINKS ---------------- */
+
+.calendar-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #d6d6d6 !important;
+    font-size: .85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    padding-bottom: 3px;
+    transition: color .3s, border-color .3s;
+}
+
+.calendar-link:hover {
+    color: white !important;
+    border-color: white;
+}
+
+/* ---------------- EVENT DESCRIPTION ---------------- */
+
 .event-description {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.35rem;
@@ -207,8 +245,6 @@ body.scrolled .scroll-indicator {
     color: white;
     font-style: italic;
 }
-
-/* ---------------- LINKS ---------------- */
 
 .event-description a {
     color: white;
@@ -433,26 +469,44 @@ body.scrolled .scroll-indicator {
             <h1>The Plan</h1>
 
             <p class="plan-note">
-                Please check back here for more information.
+                Please check back here for more information for weather-related event details as the weekend gets closer.
             </p>
 
-            <!-- ================= WELCOME DRINKS ================= -->
+            <!-- ================= Tera Mera ================= -->
 
-            <div class="event">
+ <div class="event">
 
                 <div>
 
-                    <h2>Welcome Drinks</h2>
+                    <h2>Kalyanam (Cermeony)</h2>
 
                     <div class="event-details">
 
-                        <strong>Date:</strong> May 28th, 2027<br>
+                        <strong>Date:</strong> May 28, 2027<br>
 
-                        <strong>Time:</strong> 6pm-10pm<br>
+                        <strong>Time:</strong> 11:00 AM – 3:00 PM <br>
 
                         <strong>Location:</strong><br>
 
-                        Location Coming Soon!
+                        <a href="https://www.google.com/maps/place/Tera+Mera/@40.684833,-73.9949452,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25abf41f057a1:0xe6cea257b4be218d!8m2!3d40.684833!4d-73.9949452!16s%2Fg%2F11fj31jp88?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Tera Mera
+                        </a><br>
+
+                        272 Court St<br>
+
+                        Brooklyn, NY 11231
+
+                        <br>
+
+                        <a class="calendar-link"
+                         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kalyanam&dates=20270528T110000/20270528T150000&ctz=America%2FNew_York&location=Tera+Mera%2C+272+Court+St%2C+Brooklyn%2C+NY+11231&details=Join+us+for+our+Kalyanam%2C+a+Kerala-inspired+Indian+wedding+ceremony.+We+will+have+appetizers%2C+Chaya+%28tea%29%2C+and+queer+joy.+Indian-inspired+outfits+are+encouraged%3B+otherwise%2C+semi-formal+attire."
+                         target="_blank"
+                         rel="noopener noreferrer">
+                         + Add to Calendar
+
+                        </a>
 
                     </div>
 
@@ -461,8 +515,22 @@ body.scrolled .scroll-indicator {
                 <div class="event-description">
 
                     <p>
-                        More details about this event are coming soon.
-                        Please check back here for updates!
+                        We eloped!!!! And now we want to celebrate with all of you.
+                        Please join us for our Kalyanam or our Kerala inspired Indian wedding ceremony.
+                        There will be appetizers, chaya (tea), and queer joy. 
+                        Indian-inspired outfits encouraged (not sure what this means? text us!),
+                        otherwise semi-formal.
+                    </p>
+
+                    <p>
+                        The event will begin at 11 am (sharp) and go until 3pm.
+                
+                    </p>
+
+                    <p>
+                        There are many trains close to this location: F/G Train off the Bergen stop (closest)
+                        and the 2/3/4/5 and N/R/W trains off the Borough Hall stop.
+                        
                     </p>
 
                 </div>
@@ -481,13 +549,28 @@ body.scrolled .scroll-indicator {
 
                         <strong>Date:</strong> May 29, 2027<br>
 
-                        <strong>Time:</strong> 6:30 PM – Late Night<br>
+                        <strong>Time:</strong> 7:00 PM – Late<br>
 
                         <strong>Location:</strong><br>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=All+Night+Skate+Brooklyn+NYC"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            All Night Skate
+                        </a><br>
 
                         54 Rockaway Ave<br>
 
                         Brooklyn, NY 11233
+
+                        <br>
+
+                        <a class="calendar-link"
+                           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=All+Night+Skate&dates=20270529T190000/20270530T040000&ctz=America%2FNew_York&location=54+Rockaway+Ave%2C+Brooklyn%2C+NY+11233&details=Join+us+for+food%2C+drinks%2C+and+dancing+to+celebrate+our+marriage."
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            + Add to Calendar
+                        </a>
 
                     </div>
 
@@ -496,28 +579,20 @@ body.scrolled .scroll-indicator {
                 <div class="event-description">
 
                     <p>
-                        We eloped!!!! And now we want to celebrate with all of our loved ones.
-                        Join us for food, drinks, and dancing at our favorite Brooklyn bar. All Night Skate.
+                        Ready for more?
+                        Come for food, drinks, and dancing at our favorite Brooklyn bar.
                         Please wear whatever semi-formal fit makes you feel hot and dangerous on the dance floor.
                     </p>
 
                     <p>
                         The night will begin at 7 pm (sharp) and go until late.
-                        Come ready to celebrate our love and yourselves for pouring into us along the way, from near and far.
+                        Come ready to celebrate our love and yourselves for pouring into us along the way from near and afar.
                     </p>
 
                     <p>
-                        There are two trains close to this location: C Train off the Rockaway Ave stop
-                        and the J train off the Chauncey St stop.
+                        There are two trains close to this location: A/C Train off the Rockaway Ave stop
+                        and the J/Z trains off the Chauncey St stop.
                         Trains run 24 hours, with reduced service late at night.
-                    </p>
-
-                    <p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=All+Night+Skate+Brooklyn+NYC"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            Get directions to All Night Skate
-                        </a>
                     </p>
 
                 </div>
@@ -540,9 +615,30 @@ body.scrolled .scroll-indicator {
 
                         <strong>Location:</strong><br>
 
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Peoples+Beach+at+Jacob+Riis+Park+NY"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Riis Beach
+                        </a><br>
+
                         157 Rockaway Beach Blvd<br>
 
                         Queens, NY 11694
+
+                        <br>
+
+                        <a class="calendar-link"
+                           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Riis+Beach+Celebration&dates=20270530T143000/20270530T210000&ctz=America%2FNew_York&location=Jacob+Riis+Park%2C+Queens%2C+NY+11694&details=Join+us+for+an+afternoon+at+Riis+Beach.+Bring+a+towel%2C+swimwear%2C+sunscreen%2C+and+water.+Approximate+calendar+end+time+is+9+PM."
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            + Add to Calendar
+                        </a>
+
+                        <br>
+
+                        <small style="font-size:.75rem; color:#aaa;">
+                            Calendar end time is approximate.
+                        </small>
 
                     </div>
 
@@ -551,24 +647,24 @@ body.scrolled .scroll-indicator {
                 <div class="event-description">
 
                     <p>
-                        The next day we would love to gather everyone at another
-                        favorite spot of ours, Riis beach! Please come for an
-                        afternoon of reminiscing, rehydrating, and soaking up
-                        the joy of the gayest beach of all time.
+                        To close it all out, we would love to gather everyone at another
+                        favorite spot of ours, Riis Beach.
+                        Please come for an afternoon of reminiscing, rehydrating,
+                        and enjoying the gayest beach of all time.
                     </p>
 
                     <p>
-                        Please bring a towel, swim wear (if interested), sunscreen,
+                        Please bring a towel, swim wear (if you're into that), sunscreen,
                         and plenty of water. We'll have music, snacks and drinks.
                         If it's cold, bring layers! We will have some easy-up tents
                         up to the LEFT (if you're looking at the water) of the
                         public bathrooms with a sign so you can't miss us.
-                        There are public restrooms and concessions nearby as well.
+                        There are concessions nearby as well.
                     </p>
 
                     <p>
-                        For public transit (Q35 drops right at the entrance),
-                        map to The People's Beach at Jacob Riis Park.
+                        For public transit the Q35 bus drops right at the entrance,
+                        but best to map to The People's Beach at Jacob Riis Park and see what route is best for you.
                         If driving, you can park in the lot for $25 and walk on over.
                     </p>
 
