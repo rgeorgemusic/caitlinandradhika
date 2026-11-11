@@ -287,6 +287,8 @@ body.scrolled .scroll-indicator {
     display: block;
 }
 
+/* ---------------- BUTTONS ---------------- */
+
 .button-group {
     display: flex;
     gap: 30px;
@@ -430,9 +432,9 @@ body.scrolled .scroll-indicator {
         <video id="weddingVideo"
                autoplay
                loop
-               muted
                playsinline
                controls
+               preload="auto"
                aria-label="Wedding video">
 
             <source src="video/Wedding Video.mp4" type="video/mp4">
@@ -469,12 +471,12 @@ body.scrolled .scroll-indicator {
             <h1>The Plan</h1>
 
             <p class="plan-note">
-                Please check back here for more information for weather-related event details as the weekend gets closer.
+                Please check back here for more event details as the weekend gets closer.
             </p>
 
             <!-- ================= Tera Mera ================= -->
 
- <div class="event">
+            <div class="event">
 
                 <div>
 
@@ -484,7 +486,7 @@ body.scrolled .scroll-indicator {
 
                         <strong>Date:</strong> May 28, 2027<br>
 
-                        <strong>Time:</strong> 11:00 AM – 3:00 PM <br>
+                        <strong>Approximate Time:</strong> 11:00 AM – 3:00 PM <br>
 
                         <strong>Location:</strong><br>
 
@@ -501,11 +503,10 @@ body.scrolled .scroll-indicator {
                         <br>
 
                         <a class="calendar-link"
-                         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kalyanam&dates=20270528T110000/20270528T150000&ctz=America%2FNew_York&location=Tera+Mera%2C+272+Court+St%2C+Brooklyn%2C+NY+11231&details=Join+us+for+our+Kalyanam%2C+a+Kerala-inspired+Indian+wedding+ceremony.+We+will+have+appetizers%2C+Chaya+%28tea%29%2C+and+queer+joy.+Indian-inspired+outfits+are+encouraged%3B+otherwise%2C+semi-formal+attire."
-                         target="_blank"
-                         rel="noopener noreferrer">
-                         + Add to Calendar
-
+                           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kalyanam&dates=20270528T110000/20270528T150000&ctz=America%2FNew_York&location=Tera+Mera%2C+272+Court+St%2C+Brooklyn%2C+NY+11231&details=Join+us+for+our+Kalyanam%2C+a+Kerala-inspired+Indian+wedding+ceremony.+We+will+have+appetizers%2C+Chaya+%28tea%29%2C+and+queer+joy.+Indian-inspired+outfits+are+encouraged%3B+otherwise%2C+semi-formal+attire."
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            + Add to Calendar
                         </a>
 
                     </div>
@@ -517,20 +518,19 @@ body.scrolled .scroll-indicator {
                     <p>
                         We eloped!!!! And now we want to celebrate with all of you.
                         Please join us for our Kalyanam or our Kerala inspired Indian wedding ceremony.
-                        There will be appetizers, chaya (tea), and queer joy. 
+                        There will be appetizers, chaya (tea), and queer joy.
                         Indian-inspired outfits encouraged (not sure what this means? text us!),
                         otherwise semi-formal.
                     </p>
 
                     <p>
-                        The event will begin at 11 am (sharp) and go until 3pm.
-                
+                        Pending confirmation of auspicious ceremony times, the event will begin at approximately 11am and go until 3pm.
+                        Please check back in a few weeks for confirmed event time.
                     </p>
 
                     <p>
                         There are many trains close to this location: F/G Train off the Bergen stop (closest)
                         and the 2/3/4/5 and N/R/W trains off the Borough Hall stop.
-                        
                     </p>
 
                 </div>
@@ -544,6 +544,8 @@ body.scrolled .scroll-indicator {
                 <div>
 
                     <h2>All Night Skate</h2>
+
+                    This event is 21+, sorry kids.
 
                     <div class="event-details">
 
